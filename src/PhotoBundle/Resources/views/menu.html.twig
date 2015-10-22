@@ -1,0 +1,32 @@
+<ul>
+    <li class="firstLevel">
+        <a href="/">ГЛАВНАЯ</a>
+    </li>
+    <li class="firstLevel">
+        <a href="/about/">ОБО МНЕ</a>
+    </li>
+    <li class="firstLevel">
+        <a href="#">ПОРТФОЛИО</a>
+        <ul>
+            {% for album in albums %}
+                <li class="twoLevel"><a href="/albums/{$album.url}/">{{ album.name }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+    <li class="firstLevel">
+        <a href="#">УСЛУГИ И ЦЕНЫ</a>
+        <ul>
+            <li class="twoLevel"><a href="/price/svadba/">СВАДЬБА</a></li>
+            <li class="twoLevel"><a href="/price/progulka/">ПРОГУЛКА</a></li>
+            <li class="twoLevel"><a href="/price/studija/">СТУДИЯ</a></li>
+            <li class="twoLevel"><a href="/price/love_story/">LOVE STORY</a></li>
+            <li class="twoLevel"><a href="/price/vyezdnaja_semka/">ВЫЕЗДНАЯ СЪЕМКА</a></li>
+        </ul>
+    </li>
+    <li class="firstLevel">
+        <a href="/blog/">БЛОГ</a>
+    </li>
+    <li class="firstLevel">
+        <a href="/contacts/">КОНТАКТЫ</a>
+    </li>
+</ul>
