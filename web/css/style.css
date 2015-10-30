@@ -83,13 +83,14 @@ body {
 #wrap #header #menu ul li.firstLevel:hover ul {
   display: block;
 }
-#wrap #header #menu ul li.firstLevel:first-child {
+#wrap #header #menu ul li.firstLevel.first {
   margin-left: 0;
 }
-#wrap #header #menu ul li.firstLevel:last-child {
+#wrap #header #menu ul li.firstLevel.last {
   margin-right: 0;
 }
-#wrap #header #menu ul li.firstLevel a {
+#wrap #header #menu ul li.firstLevel a,
+#wrap #header #menu ul li.firstLevel span {
   display: block;
   color: #6f6f6f;
   text-decoration: none;

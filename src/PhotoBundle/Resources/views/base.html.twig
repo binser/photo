@@ -24,7 +24,7 @@
             </div>
         </div>
         <div id="menu">
-            {% include 'PhotoBundle::menu.html.twig' with {'albums': albums} %}
+            {{ knp_menu_render('main') }}
         </div>
     </div>
 

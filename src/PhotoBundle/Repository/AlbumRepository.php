@@ -3,6 +3,7 @@
 namespace PhotoBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use PhotoBundle\Entity\Album;
 
 /**
  * AlbumRepository
@@ -12,7 +13,32 @@ use Doctrine\ORM\EntityRepository;
  */
 class AlbumRepository extends EntityRepository
 {
+    /**
+     * @return Album[]
+     */
     public function getAllActualAlbums() {
         return $this->findBy(['enabled' => true]);
+    }
+
+    /**
+     * @return array
+     */
+    public function getAllAlbumURLs() {
+        $albums = $this->findBy(['enabled' => true]);
+        $urls = array();
+        /** @var Album $album */
+        foreach($albums as $album) {
+            $urls[] = $album->getUrl();
+        }
+
+        return $urls;
+    }
+
+    /**
+     * @param $albumURL string
+     * @return Album|null
+     */
+    public function getAlbumByURL($albumURL) {
+        return $this->findOneBy(['url' => $albumURL]);
     }
 }
