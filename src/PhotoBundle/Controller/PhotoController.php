@@ -38,19 +38,23 @@ class PhotoController extends Controller
     {
         switch ($pricePage) {
             case 'svadba':
+                return $this->render('PhotoBundle:Pages/Prices:svadba.html.twig');
                 break;
             case 'progulka':
+                return $this->render('PhotoBundle:Pages/Prices:progulka.html.twig');
                 break;
             case 'studija':
+                return $this->render('PhotoBundle:Pages/Prices:studija.html.twig');
                 break;
             case 'love_story':
+                return $this->render('PhotoBundle:Pages/Prices:love_story.html.twig');
                 break;
             case 'vyezdnaja_semka':
+                return $this->render('PhotoBundle:Pages/Prices:vyezdnaja_semka.html.twig');
                 break;
             default:
                 throw new NotFoundHttpException("Не корректный адрес страницы");
         }
-        return $this->render('PhotoBundle:Pages:index.html.twig', ['albums' => []]);
     }
 
     public function blogAction()

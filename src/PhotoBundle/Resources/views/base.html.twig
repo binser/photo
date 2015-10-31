@@ -3,8 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="description" content="{% block description %}Сайт Гавриленко Ирины{% endblock %}"/>
-    <meta name="keywords"
-          content="{% block keywords %}фотография, фотография в Брянске, фото, фотосессии{% endblock %}"/>
+    <meta name="keywords" content="{% block keywords %}фотография, фотография в Брянске, фото, фотосессии{% endblock %}"/>
     <title>{% block title %}Сайт Гавриленко Ирины{% endblock %}</title>
 
     {% block stylesheets %}
@@ -15,17 +14,9 @@
 <body>
 <div id="wrap">
     <div id="header">
-        <div class="authorBlock">
-            <div class="authorName">
-                <a href="/">Гавриленко Ирина</a>
-            </div>
-            <div class="photogarapher">
-                <a href="/">фотограф</a>
-            </div>
-        </div>
-        <div id="menu">
-            {{ knp_menu_render('main') }}
-        </div>
+        {% block header %}
+            {% include 'PhotoBundle::header.html.twig' %}
+        {% endblock %}
     </div>
 
     <div id="content">
@@ -34,7 +25,7 @@
     </div>
 </div>
 
-{% include 'PhotoBundle::footer.tml.twig' %}
+{% include 'PhotoBundle::footer.html.twig' %}
 {% block javascripts %}
 {% endblock %}
 </body>
