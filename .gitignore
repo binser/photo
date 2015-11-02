@@ -6,8 +6,10 @@
 !app/cache/.gitkeep
 !app/logs/.gitkeep
 /app/phpunit.xml
+/app/bootstrap.php.cache
 /build/
 /vendor/
 /bin/
 /composer.phar
+/composer.lock
 /.idea/
