@@ -1,0 +1,15 @@
+admin_index:
+    path: /
+    defaults: { _controller: PhotoBundle:Admin:index }
+
+admin_photos:
+    path: /photos/{albumName}
+    defaults: { _controller: PhotoBundle:Admin:index, albumName: svadba }
+
+admin_albums:
+    path: /albums/
+    defaults: { _controller: PhotoBundle:Admin:index }
+
+admin_blog:
+    path: /blog/
+    defaults: { _controller: PhotoBundle:Admin:index }

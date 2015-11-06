@@ -80,7 +80,7 @@ class Photo
      *
      * @return Photo
      */
-    public function setEnabled($enabled)
+    public function setEnabled($enabled = true)
     {
         $this->enabled = $enabled;
 

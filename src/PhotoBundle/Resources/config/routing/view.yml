@@ -1,0 +1,23 @@
+photo_homepage:
+    path: /
+    defaults: { _controller: PhotoBundle:Photo:index }
+
+photo_about:
+    path: /about/
+    defaults: { _controller: PhotoBundle:Photo:about }
+
+photo_albums:
+    path: /albums/{albumURL}
+    defaults: { _controller: PhotoBundle:Photo:albums }
+
+photo_price:
+    path: /price/{pricePage}
+    defaults: { _controller: PhotoBundle:Photo:price }
+
+photo_blog:
+    path: /blog/
+    defaults: { _controller: PhotoBundle:Photo:blog }
+
+photo_contacts:
+    path: /contacts/
+    defaults: { _controller: PhotoBundle:Photo:contacts }
