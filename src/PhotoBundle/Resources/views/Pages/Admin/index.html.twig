@@ -1,0 +1,11 @@
+{% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
+
+{% block content %}
+    <div id="admin_buttons_block">
+        <a class="admin_button" href="{{ path('admin_photos') }}">Редактировать фотографии</a>
+        <br>
+        <a class="admin_button" href="{{ path('admin_albums') }}">Редактировать альбомы</a>
+        <br>
+        <a class="admin_button" href="{{ path('admin_blog') }}">Редактировать блог</a>
+    </div>
+{% endblock %}
