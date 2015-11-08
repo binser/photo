@@ -2,5 +2,10 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('/css/admin.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('css/admin.css') }}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('js/admin.js') }}"></script>
 {% endblock %}

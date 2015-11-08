@@ -26,7 +26,7 @@ class AlbumController extends Controller
         $entities = $em->getRepository('PhotoBundle:Album')->findAll();
 
         return $this->render('PhotoBundle:Album:index.html.twig', array(
-            'entities' => $entities,
+            'albums' => $entities,
         ));
     }
     /**

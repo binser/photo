@@ -1,47 +1,32 @@
-{% extends '::base.html.twig' %}
+{% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
 
-{% block body -%}
-    <h1>Album list</h1>
-
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Caption</th>
-                <th>Url</th>
-                <th>Enabled</th>
-                <th>Sortindex</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('admin_album_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>{{ entity.caption }}</td>
-                <td>{{ entity.url }}</td>
-                <td>{{ entity.enabled }}</td>
-                <td>{{ entity.sortIndex }}</td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('admin_album_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('admin_album_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
+{% block content %}
+    <div id="table_albums">
+        <div class="row header">
+            <div class="column id">Id</div>
+            <div class="column caption">Название</div>
+            <div class="column url">Адрес URL</div>
+            <div class="column action">Действия</div>
+        </div>
+        {% for album in albums %}
+            <div class="row">
+                <div class="column id">{{ album.id }}</div>
+                <div class="column caption">{{ album.caption }}</div>
+                <div class="column url">{{ album.url }}</div>
+                <div class="column action">
+                    <div class="enabled" title="Выключить отображение"></div>
+                    <div class="edit" title="Редактировать"></div>
+                    <div class="delete" title="Удалить"></div>
+                </div>
+            </div>
         {% endfor %}
-        </tbody>
-    </table>
-
-        <ul>
+    </div>
+    <div class="clear"></div>
+    <ul>
         <li>
             <a href="{{ path('admin_album_new') }}">
                 Create a new entry
             </a>
         </li>
     </ul>
-    {% endblock %}
+{% endblock %}

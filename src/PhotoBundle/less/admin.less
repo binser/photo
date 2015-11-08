@@ -23,3 +23,60 @@
     }
   }
 }
+
+#table_albums {
+  width: 100%;
+  .row {
+    width: inherit;
+    clear: both;
+    height: 30px;
+    border-bottom: 1px dashed black;
+    &.header {
+      background-color: #edf8ff;
+      font-weight: bold;
+    }
+    &:nth-child(2n) {
+      background-color: #eff8e1;
+    }
+    .column {
+      float: left;
+      padding: 5px 0;
+      box-sizing: border-box;
+      text-indent: 10px;
+      &.id {
+        width: 15%;
+      }
+      &.caption {
+        width: 30%;
+        border-left: 1px dashed black;
+      }
+      &.url {
+        width: 25%;
+        border-left: 1px dashed black;
+      }
+      &.action {
+        width: 30%;
+        border-left: 1px dashed black;
+        div {
+          width: 16px;
+          height: 16px;
+          float: left;
+          margin-left: 10px;
+          cursor: pointer;
+        }
+        .enabled {
+          background-image: url("/images/admin/disabled.png");
+        }
+        .disabled {
+          background-image: url("/images/admin/enabled.png");
+        }
+        .edit {
+          background-image: url("/images/admin/edit.png");
+        }
+        .delete {
+          background-image: url("/images/admin/del.png");
+        }
+      }
+    }
+  }
+}

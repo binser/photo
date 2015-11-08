@@ -18,7 +18,6 @@ body {
 #wrap {
   min-height: 100%;
   height: auto !important;
-  height: 100%;
 }
 #wrap #header {
   width: 990px;
@@ -68,7 +67,6 @@ body {
 #wrap #header #menu ul {
   display: block;
   background-color: #ffffff;
-  opacity: 0.9;
   position: relative;
 }
 #wrap #header #menu ul li.firstLevel {
@@ -113,9 +111,6 @@ body {
   text-align: left;
   text-indent: 8px;
   border-bottom: 2px solid #3a816e;
-}
-#wrap #header #menu ul li.firstLevel ul li.twoLevel:last-child {
-  border-bottom: none;
 }
 #wrap #header #menu ul li.firstLevel ul li.twoLevel a {
   font-size: 16px;
@@ -169,4 +164,7 @@ body {
   font-size: 14px;
   text-align: center;
   border-top: 1px solid #3a816e;
+}
+.clear {
+  clear: both;
 }
