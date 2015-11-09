@@ -2,6 +2,14 @@ admin_album:
     path:     /
     defaults: { _controller: "PhotoBundle:Album:index" }
 
+admin_album_enabled:
+    path:     /{albumId}/enabled/
+    defaults: { _controller: "PhotoBundle:Album:enabled" }
+
+admin_album_disabled:
+    path:     /{albumId}/disabled/
+    defaults: { _controller: "PhotoBundle:Album:disabled" }
+
 admin_album_show:
     path:     /{id}/show
     defaults: { _controller: "PhotoBundle:Album:show" }

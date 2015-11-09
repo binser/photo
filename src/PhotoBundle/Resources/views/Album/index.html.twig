@@ -14,7 +14,11 @@
                 <div class="column caption">{{ album.caption }}</div>
                 <div class="column url">{{ album.url }}</div>
                 <div class="column action">
-                    <div class="enabled" title="Выключить отображение"></div>
+                    {% if album.enabled %}
+                        <div class="enabled" title="Выключить отображение"></div>
+                    {% else %}
+                        <div class="disabled" title="Включить отображение"></div>
+                    {% endif %}
                     <div class="edit" title="Редактировать"></div>
                     <div class="delete" title="Удалить"></div>
                 </div>

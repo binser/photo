@@ -2,6 +2,7 @@
 
 namespace PhotoBundle\Controller;
 
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -29,6 +30,31 @@ class AlbumController extends Controller
             'albums' => $entities,
         ));
     }
+
+    public function enabledAction($albumId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $album = $em->getRepository('PhotoBundle:Album')->find($albumId);
+        $album->setEnabled(true);
+
+        $em->persist($album);
+        $em->flush();
+
+        return new JsonResponse(array('success' => true));
+    }
+
+    public function disabledAction($albumId)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $album = $em->getRepository('PhotoBundle:Album')->find($albumId);
+        $album->setEnabled(false);
+
+        $em->persist($album);
+        $em->flush();
+
+        return new JsonResponse(array('success' => true));
+    }
+
     /**
      * Creates a new Album entity.
      *
