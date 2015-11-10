@@ -6,12 +6,15 @@ $(document).ready(function () {
                 $this = $(this);
             $.ajax({
                 url: '/admin/albums/' + id + '/disabled/',
+                method: 'POST',
                 success: function(data) {
                     if (data.success) {
                         $this.attr({
                             'class': 'disabled',
                             'title': 'Включить отображение'
                         });
+                    } else {
+                        alert('Что то пошло не так! Попробуйте снова!');
                     }
                 }
             });
@@ -24,9 +27,15 @@ $(document).ready(function () {
                 $this = $(this);
             $.ajax({
                 url: '/admin/albums/' + id + '/enabled/',
+                method: 'POST',
                 success: function(data) {
                     if (data.success) {
-                        $this.attr('class', 'enabled');
+                        $this.attr({
+                            'class': 'enabled',
+                            'title': 'Отключить отображение'
+                        });
+                    } else {
+                        alert('Что то пошло не так! Попробуйте снова!');
                     }
                 }
             });
@@ -34,13 +43,24 @@ $(document).ready(function () {
 
     });
 
-    $('.edit', '.action').click(function() {
-
-    });
-
     $('.delete', '.action').click(function() {
         if (confirm("Вы действительно хотите удалить этот альбом?")) {
-
+            var id = $(this).parent().siblings('.id').text();
+            $.ajax({
+                url: '/admin/albums/' + id + '/delete/',
+                method: 'POST',
+                success: function(data) {
+                    if (data.success) {
+                        window.location.reload()
+                    } else {
+                        alert('Что то пошло не так! Попробуйте снова!');
+                    }
+                }
+            });
         }
+    });
+
+    $('.edit', '.action').click(function() {
+
     });
 });

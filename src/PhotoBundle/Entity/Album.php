@@ -3,6 +3,7 @@
 namespace PhotoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="PhotoBundle\Repository\AlbumRepository")
@@ -19,16 +20,24 @@ class Album
 
     /**
      * @ORM\Column(type="string", length=100)
+     *
+     * @Assert\NotBlank()
+     * @Assert\MaxLength(200)
      */
     protected $caption;
 
     /**
      * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank()
+     * @Assert\MaxLength(200)
      */
     protected $url;
 
     /**
      * @ORM\Column(type="boolean")
+     *
+     * @Assert\NotBlank()
      */
     protected $enabled;
 

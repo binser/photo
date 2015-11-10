@@ -1,11 +1,11 @@
-photo_admin_album:
-    resource: "@PhotoBundle/Resources/config/routing/album.yml"
-    prefix:   /admin/albums/
-
 photo_view:
     resource: "@PhotoBundle/Resources/config/routing/view.yml"
     prefix:   /
 
 photo_admin:
-    resource: "@PhotoBundle/Resources/config/routing/admin.yml"
+    resource: "@PhotoBundle/Resources/config/routing/admin/admin.yml"
     prefix:   /admin/
+
+photo_admin_album:
+    resource: "@PhotoBundle/Resources/config/routing/admin/album.yml"
+    prefix:   /admin/albums/

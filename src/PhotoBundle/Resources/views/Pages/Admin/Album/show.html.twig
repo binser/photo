@@ -1,0 +1,43 @@
+{% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
+
+{% block content %}
+    <h1>Альбом</h1>
+
+    <table class="record_properties">
+        <tbody>
+        <tr>
+            <th>Идентификатор</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Название</th>
+            <td>{{ entity.caption }}</td>
+        </tr>
+        <tr>
+            <th>Url</th>
+            <td>{{ entity.url }}</td>
+        </tr>
+        <tr>
+            <th>Состояние</th>
+            <td>{{ entity.enabled }}</td>
+        </tr>
+        <tr>
+            <th>Индекс Сортировки</th>
+            <td>{{ entity.sortIndex }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('admin_album') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('admin_album_edit', { 'albumId': entity.id }) }}">
+                Edit
+            </a>
+        </li>
+    </ul>
+{% endblock %}

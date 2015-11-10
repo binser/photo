@@ -1,0 +1,40 @@
+{% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
+
+{% block content %}
+    <h1>Добавление альбома</h1>
+
+    {{ form_start(form) }}
+    <table id="album_form">
+        <tbody>
+        <tr>
+            <th>{{ form_label(form.caption) }}</th>
+            <td>
+                {{ form_widget(form.caption) }}
+                {{ form_errors(form.caption) }}
+            </td>
+        </tr>
+        <tr>
+            <th>{{ form_label(form.url) }}</th>
+            <td>
+                {{ form_widget(form.url) }}
+                {{ form_errors(form.url) }}
+            </td>
+        </tr>
+        <tr>
+            <th>{{ form_label(form.enabled) }}</th>
+            <td>
+                {{ form_widget(form.enabled) }}
+                {{ form_errors(form.enabled) }}
+            </td>
+
+    </table>
+    {{ form_end(form) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('admin_album') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+{% endblock %}
