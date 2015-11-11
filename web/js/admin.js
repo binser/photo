@@ -61,6 +61,7 @@ $(document).ready(function () {
     });
 
     $('.edit', '.action').click(function() {
-
+        var id = $(this).parent().siblings('.id').text();
+        document.location.href = '/admin/albums/' + id + '/edit/';
     });
 });

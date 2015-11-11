@@ -15,9 +15,9 @@ class AlbumType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('caption', array('label' => 'Название альбома'))
-            ->add('url', array('label' => 'Интернет адрес альбома'))
-            ->add('enabled', array('label' => 'Статус альбома'))
+            ->add('caption', null, array('label' => 'Название альбома'))
+            ->add('url', null, array('label' => 'Интернет адрес альбома'))
+            ->add('enabled', null, array('label' => 'Отображать альбом'))
         ;
     }
     

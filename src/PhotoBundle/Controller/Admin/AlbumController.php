@@ -1,6 +1,6 @@
 <?php
 
-namespace PhotoBundle\Controller;
+namespace PhotoBundle\Controller\Admin;
 
 use Symfony\Component\Form\Form;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -208,7 +208,7 @@ class AlbumController extends Controller
 
         return $this->render('@Photo/Pages/Admin/Album/edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'   => $editForm->createView(),
         ));
     }
 

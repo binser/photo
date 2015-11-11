@@ -1,40 +1,39 @@
-admin_album:
+admin_albums:
     path:     /
-    defaults: { _controller: "PhotoBundle:Album:index" }
+    defaults: { _controller: "PhotoBundle:Admin/Album:index" }
 
 admin_album_enabled:
     path:     /{albumId}/enabled/
-    defaults: { _controller: "PhotoBundle:Album:enabled" }
+    defaults: { _controller: "PhotoBundle:Admin/Album:enabled" }
     methods:  POST
 
 admin_album_disabled:
     path:     /{albumId}/disabled/
-    defaults: { _controller: "PhotoBundle:Album:disabled" }
+    defaults: { _controller: "PhotoBundle:Admin/Album:disabled" }
     methods:  POST
 
 admin_album_delete:
     path:     /{albumId}/delete/
-    defaults: { _controller: "PhotoBundle:Album:delete" }
+    defaults: { _controller: "PhotoBundle:Admin/Album:delete" }
     methods:  [POST, DELETE]
 
 admin_album_show:
     path:     /{albumId}/show/
-    defaults: { _controller: "PhotoBundle:Album:show" }
+    defaults: { _controller: "PhotoBundle:Admin/Album:show" }
 
 admin_album_new:
     path:     /new/
-    defaults: { _controller: "PhotoBundle:Album:new" }
+    defaults: { _controller: "PhotoBundle:Admin/Album:new" }
 
 admin_album_create:
     path:     /create/
-    defaults: { _controller: "PhotoBundle:Album:create" }
-    methods:  POST
+    defaults: { _controller: "PhotoBundle:Admin/Album:create" }
 
 admin_album_edit:
     path:     /{albumId}/edit/
-    defaults: { _controller: "PhotoBundle:Album:edit" }
+    defaults: { _controller: "PhotoBundle:Admin/Album:edit" }
 
 admin_album_update:
     path:     /{albumId}/update/
-    defaults: { _controller: "PhotoBundle:Album:update" }
+    defaults: { _controller: "PhotoBundle:Admin/Album:update" }
     methods:  [POST, PUT]

@@ -22,7 +22,7 @@ class Album
      * @ORM\Column(type="string", length=100)
      *
      * @Assert\NotBlank()
-     * @Assert\MaxLength(200)
+     * @Assert\Length(min = 1, max = 200)
      */
     protected $caption;
 
@@ -30,7 +30,7 @@ class Album
      * @ORM\Column(type="string")
      *
      * @Assert\NotBlank()
-     * @Assert\MaxLength(200)
+     * @Assert\Length(min = 1, max = 200)
      */
     protected $url;
 

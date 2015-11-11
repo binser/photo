@@ -11,6 +11,5 @@ services:
 
     album_pre_persist_listener:
         class: PhotoBundle\EventListener\Album
-        arguments: [@doctrine.orm.entity_manager]
         tags:
             - { name: doctrine.event_listener, event: prePersist }
