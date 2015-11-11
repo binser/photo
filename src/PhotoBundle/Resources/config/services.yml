@@ -4,12 +4,24 @@ services:
         arguments: ["@knp_menu.factory", @doctrine.orm.entity_manager]
 
     app.main_menu:
-        class: Knp\Menu\MenuItem # the service definition requires setting the class
+        class: Knp\Menu\MenuItem
         factory: ["@app.menu_builder", createMainMenu]
         tags:
             - { name: knp_menu.menu, alias: main }
 
+    app.admin_main_menu:
+            class: Knp\Menu\MenuItem
+            factory: ["@app.menu_builder", createAdminMainMenu]
+            tags:
+                - { name: knp_menu.menu, alias: admin_main }
+
+    app.admin_albums_menu:
+                class: Knp\Menu\MenuItem
+                factory: ["@app.menu_builder", createAdminAlbumsMenu]
+                tags:
+                    - { name: knp_menu.menu, alias: admin_albums }
+
     album_pre_persist_listener:
-        class: PhotoBundle\EventListener\Album
+        class: PhotoBundle\EventSubscriber\Album
         tags:
-            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_subscriber }

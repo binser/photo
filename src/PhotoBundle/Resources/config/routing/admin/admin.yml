@@ -3,8 +3,8 @@ admin_index:
     defaults: { _controller: PhotoBundle:Admin/Admin:index }
 
 admin_photos:
-    path: /photos/{albumName}
-    defaults: { _controller: PhotoBundle:Admin/Admin:index, albumName: svadba }
+    path: /photos/{albumUrl}
+    defaults: { _controller: PhotoBundle:Admin/Photo:index, albumUrl: svadba }
 
 admin_blog:
     path: /blog/

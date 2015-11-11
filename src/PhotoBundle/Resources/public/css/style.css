@@ -1,6 +1,6 @@
 @font-face {
   font-family: HeatherScriptTwo;
-  src: url(/fonts/HeatherScriptTwo.ttf);
+  src: url(../fonts/HeatherScriptTwo.ttf);
 }
 * {
   margin: 0;
@@ -24,7 +24,7 @@ body {
   margin: 0 auto;
   height: 180px;
   position: relative;
-  background: url("/images/background.jpg") bottom center no-repeat;
+  background: url("../images/background.jpg") bottom center no-repeat;
 }
 #wrap #header .authorBlock {
   width: 300px;
@@ -37,7 +37,7 @@ body {
   right: 0;
 }
 #wrap #header .authorBlock .authorName a {
-  font-family: HeatherScriptTwo;
+  font-family: HeatherScriptTwo, Georgia, "Times New Roman", Times, serif;
   font-size: 42px;
   font-weight: bold;
   text-decoration: none;

@@ -14,17 +14,35 @@ use PhotoBundle\Entity\Album;
 class AlbumRepository extends EntityRepository
 {
     /**
+     * Получение списка альбомов, у которых sortIndex больше переданного
+     *
+     * @param $sortIndex integer
      * @return Album[]
      */
-    public function getAllActualAlbums() {
-        return $this->findBy(['enabled' => true]);
+    public function getAlbumsWithMoreSortIndex($sortIndex) {
+        return $this->createQueryBuilder('al')
+            ->where('al.sortIndex > :sortIndex')
+            ->setParameter('sortIndex', $sortIndex)
+            ->getQuery()
+            ->getResult();
     }
 
     /**
+     * Получение отсортированного списка включенных альбомов
+     *
+     * @return Album[]
+     */
+    public function getAllActualAlbums() {
+        return $this->findBy(['enabled' => true], ['sortIndex' => 'ASC']);
+    }
+
+    /**
+     * Получение списка URL адресов включенных альбомов
+     *
      * @return array
      */
     public function getAllAlbumURLs() {
-        $albums = $this->findBy(['enabled' => true]);
+        $albums = $this->findBy(['enabled' => true], ['sortIndex' => 'ASC']);
         $urls = array();
         /** @var Album $album */
         foreach($albums as $album) {
@@ -35,6 +53,8 @@ class AlbumRepository extends EntityRepository
     }
 
     /**
+     * Получение альбома по его URL
+     *
      * @param $albumURL string
      * @return Album|null
      */

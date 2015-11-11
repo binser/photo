@@ -61,4 +61,32 @@ class MenuBuilder
 
         return $menu;
     }
+
+    public function createAdminMainMenu() {
+        $menu = $this->factory->createItem('root');
+        $menu->addChild('Редактировать блог', array('route' => 'admin_blog', 'attributes' => array('class' => 'itemButton')));
+        $menu->addChild('Редактировать альбомы', array('route' => 'admin_albums', 'attributes' => array('class' => 'itemButton')));
+        $menu->addChild('Редактировать фотографии', array('route' => 'admin_photos', 'attributes' => array('class' => 'itemButton')));
+
+        return $menu;
+    }
+
+    public function createAdminAlbumsMenu() {
+        $menu = $this->factory->createItem('root');
+        $albums = $this->em->getRepository('PhotoBundle:Album')
+            ->getAllActualAlbums();
+        /** @var Album $album */
+        foreach ($albums as $album) {
+            $menu->addChild($album->getCaption(), array(
+                'route' => 'admin_photos',
+                'routeParameters' => array('albumUrl' => $album->getUrl()),
+                'attributes' => array(
+                    'class' => 'itemAlbum',
+                    'albumId' => $album->getId()
+                )
+            ));
+        }
+
+        return $menu;
+    }
 }

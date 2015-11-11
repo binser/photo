@@ -44,14 +44,14 @@ $(document).ready(function () {
     });
 
     $('.delete', '.action').click(function() {
-        if (confirm("Вы действительно хотите удалить этот альбом?")) {
+        if (confirm("Вы действительно хотите удалить этот альбом и все фотограффии в нем?")) {
             var id = $(this).parent().siblings('.id').text();
             $.ajax({
                 url: '/admin/albums/' + id + '/delete/',
                 method: 'POST',
                 success: function(data) {
                     if (data.success) {
-                        window.location.reload()
+                        window.location.reload();
                     } else {
                         alert('Что то пошло не так! Попробуйте снова!');
                     }

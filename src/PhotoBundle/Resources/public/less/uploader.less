@@ -1,0 +1,119 @@
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
+@uploaderThumbnailWidth: 120px;
+@uploaderThumbnailHeight: 96px;
+@uploaderThumbnailSpacingX: 18px;
+@mainColor: #4388C4;
+@imageBackgroundColor: #E6E6E6;
+
+.imageUploader {
+  width: 100%;
+  user-select: none;
+  -ms-user-select: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  input[type="file"] {
+    height: 0;
+    width: 0;
+    visibility: hidden;
+  }
+  .imageList {
+    width: 100%;
+    .image {
+      .size(@uploaderThumbnailWidth, @uploaderThumbnailHeight);
+      &.loading {
+        background-image: url("../images/uploader/preloader.gif");
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+      &.errorLoading {
+        background-image: url("../images/uploader/error.svg");
+        background-position: center center;
+        background-repeat: no-repeat;
+        .default {
+          cursor: default;
+        }
+      }
+      background-color: @imageBackgroundColor;
+      margin: 10px 0 10px 10px;
+      float: left;
+      position: relative;
+      .hint--bottom {
+        .size(@uploaderThumbnailSpacingX, @uploaderThumbnailSpacingX);
+        border-radius: 9px;
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        cursor: pointer;
+        .delete {
+          &:hover {
+            background: url(../images/uploader/preview_delete_hover.svg);
+            transform: rotate(180deg);
+          }
+          .size(@uploaderThumbnailSpacingX, @uploaderThumbnailSpacingX);
+          background: url(../images/uploader/preview_delete.svg);
+          transition: 0.3s ease-in-out;
+        }
+
+      }
+    }
+    .substitute {
+      .size(@uploaderThumbnailWidth, @uploaderThumbnailHeight);
+      margin: 10px 0 10px 10px;
+      cursor: pointer;
+      float: left;
+      background-image: url(../images/uploader/add_photo.svg);
+      &.oneImage {
+        background-image: url(../images/uploader/resume_loader.svg);
+      }
+      background-position: center center;
+    }
+  }
+  .restrictions {
+    clear: both;
+    margin-bottom: 5px;
+    width: 100%;
+    text-align: center;
+  }
+  .requirements {
+    width: 100%;
+    text-align: center;
+    &.oneImage {
+      width: 150px;
+      float: left;
+    }
+    a {
+      color: #2272bb;
+      text-decoration: underline;
+    }
+  }
+
+  .oneImageBlock {
+    width: 130px;
+    float: left;
+    #download {
+      .size(130px, 36px);
+      transition: 0.2s ease-in-out;
+      border: 1px solid @mainColor;
+      border-radius: 3px;
+      font-size: 14px;
+      font-weight: bold;
+      color: @mainColor;
+      line-height: 36px;
+      text-align: center;
+      font-family: Roboto, sans-serif;
+      margin: 20px 10px 10px 10px;
+      background-color: transparent;
+      cursor: pointer;
+      float: left;
+      &:hover {
+        color: #ffffff;
+        background-color: @mainColor;
+      }
+    }
+  }
+
+}

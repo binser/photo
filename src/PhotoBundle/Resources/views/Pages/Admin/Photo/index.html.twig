@@ -1,0 +1,8 @@
+{% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
+
+{% block content %}
+    <div id="albums_menu">
+        {{ knp_menu_render('admin_albums') }}
+    </div>
+    <div id="photos_block"></div>
+{% endblock %}
