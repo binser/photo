@@ -5,9 +5,20 @@ namespace PhotoBundle\EventSubscriber;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
+use PhotoBundle\Entity\Photo;
 
-class Album implements EventSubscriber
+class EntityEventsSubscriber implements EventSubscriber
 {
+    /**
+     * @var \Symfony\Component\DependencyInjection\Container
+     */
+    private $_container;
+
+    function __construct($container)
+    {
+        $this->_container = $container;
+    }
+
     /**
      * @return array
      */
@@ -39,6 +50,9 @@ class Album implements EventSubscriber
                 $currentSortIndex = $album->getSortIndex();
                 $album->setSortIndex($currentSortIndex + 10);
             }
+        } elseif($entity instanceof Photo) {
+            $dateCreate = new \DateTime();
+            $entity->setDateCreate($dateCreate);
         }
     }
 
@@ -64,6 +78,19 @@ class Album implements EventSubscriber
             foreach($albums as $album) {
                 $currentSortIndex = $album->getSortIndex();
                 $album->setSortIndex($currentSortIndex - 10);
+            }
+        } elseif($entity instanceof Photo) {
+            $name = $entity->getName();
+            $pathToImageDirectory = $this->_container->get('request')->server->get('DOCUMENT_ROOT') . '/uploaded/images';
+            $paths = array(
+                $pathToImageDirectory . '/800x800/',
+                $pathToImageDirectory . '/200x200/'
+            );
+            foreach($paths as $path) {
+                $fullName = $path . $name;
+                if (file_exists($fullName)) {
+                    unlink($fullName);
+                }
             }
         }
     }

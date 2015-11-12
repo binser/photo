@@ -22,6 +22,7 @@ services:
                     - { name: knp_menu.menu, alias: admin_albums }
 
     album_pre_persist_listener:
-        class: PhotoBundle\EventSubscriber\Album
+        class: PhotoBundle\EventSubscriber\EntityEventsSubscriber
+        arguments: [@service_container]
         tags:
             - { name: doctrine.event_subscriber }

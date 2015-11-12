@@ -24,8 +24,6 @@ preview.prototype.scaleTo = function (preview) {
 /**
  * Построение начальной матрицы преобразования изображения
  * @param {HTMLImageElement} image Изображение
- * @param {int} frameWidth Ширина рамки
- * @param {int} frameHeight Высота рамки
  * @param {boolean} isMatrixCorrect Нормальная ли матрица или с поправкой для panzoom
  */
 preview.prototype.getDefaultMatrix = function (image, isMatrixCorrect) {
@@ -96,11 +94,11 @@ preview.prototype.render = function (options) {
     return $canvas;
 };
 
-var previewSmall = new preview(120, 96);
+var previewSmall = new preview(200, 200);
 
-var previewMedium = new preview(340, 272);
+var previewMedium = new preview(200, 200);
 
-var previewLarge = new preview(770, 616);
+var previewLarge = new preview(800, 800);
 
 previewLarge.render = function (options) {
     function getScale(matrix) {

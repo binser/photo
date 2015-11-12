@@ -3,7 +3,6 @@
 namespace PhotoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="PhotoBundle\Repository\PhotoRepository")
@@ -24,6 +23,11 @@ class Photo
     protected $dateCreate;
 
     /**
+     * @ORM\Column(name="name", type="string")
+     */
+    protected $name;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Album", inversedBy="photos")
      * @ORM\JoinColumn(name="album_id", referencedColumnName="id")
      */
@@ -34,10 +38,6 @@ class Photo
      */
     protected $enabled;
 
-    public function __construct()
-    {
-        $this->setDateCreate(new \DateTime());
-    }
 
     /**
      * Get id
@@ -119,5 +119,29 @@ class Photo
     public function getAlbum()
     {
         return $this->album;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Photo
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

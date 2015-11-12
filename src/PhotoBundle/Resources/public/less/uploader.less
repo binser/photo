@@ -3,8 +3,8 @@
   height: @height;
 }
 
-@uploaderThumbnailWidth: 120px;
-@uploaderThumbnailHeight: 96px;
+@uploaderThumbnailWidth: 200px;
+@uploaderThumbnailHeight: 200px;
 @uploaderThumbnailSpacingX: 18px;
 @mainColor: #4388C4;
 @imageBackgroundColor: #E6E6E6;
@@ -24,21 +24,14 @@
     width: 100%;
     .image {
       .size(@uploaderThumbnailWidth, @uploaderThumbnailHeight);
-      &.loading {
-        background-image: url("../images/uploader/preloader.gif");
-        background-position: center center;
-        background-repeat: no-repeat;
-      }
-      &.errorLoading {
-        background-image: url("../images/uploader/error.svg");
-        background-position: center center;
-        background-repeat: no-repeat;
-        .default {
-          cursor: default;
-        }
-      }
       background-color: @imageBackgroundColor;
-      margin: 10px 0 10px 10px;
+      margin: 20px 5px;
+      &:first-child {
+        margin-left: 10px;
+      }
+      &:last-child {
+        margin-right: 10px;
+      }
       float: left;
       position: relative;
       .hint--bottom {
@@ -62,14 +55,18 @@
     }
     .substitute {
       .size(@uploaderThumbnailWidth, @uploaderThumbnailHeight);
-      margin: 10px 0 10px 10px;
+      margin: 20px 5px;
+      &:first-child {
+        margin-left: 10px;
+      }
+      &:last-child {
+        margin-right: 10px;
+      }
+      border: 2px solid #AAAAAA;
+      border-radius: 5px;
       cursor: pointer;
       float: left;
-      background-image: url(../images/uploader/add_photo.svg);
-      &.oneImage {
-        background-image: url(../images/uploader/resume_loader.svg);
-      }
-      background-position: center center;
+      background: #e6e6e6 url(../images/uploader/add_photo.png) no-repeat center center;
     }
   }
   .restrictions {
@@ -78,42 +75,27 @@
     width: 100%;
     text-align: center;
   }
-  .requirements {
-    width: 100%;
+
+  #saveButton {
+    width: 196px;
+    transition: 0.2s ease-in-out;
+    border: 1px solid #4388c4;
+    border-radius: 3px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #4388c4;
+    height: 42px;
+    line-height: 42px;
     text-align: center;
-    &.oneImage {
-      width: 150px;
-      float: left;
-    }
-    a {
-      color: #2272bb;
-      text-decoration: underline;
-    }
-  }
-
-  .oneImageBlock {
-    width: 130px;
+    font-family: Roboto, sans-serif;
+    background-color: transparent;
+    cursor: pointer;
     float: left;
-    #download {
-      .size(130px, 36px);
-      transition: 0.2s ease-in-out;
-      border: 1px solid @mainColor;
-      border-radius: 3px;
-      font-size: 14px;
-      font-weight: bold;
-      color: @mainColor;
-      line-height: 36px;
-      text-align: center;
-      font-family: Roboto, sans-serif;
-      margin: 20px 10px 10px 10px;
-      background-color: transparent;
-      cursor: pointer;
-      float: left;
-      &:hover {
-        color: #ffffff;
-        background-color: @mainColor;
-      }
+    margin-top: 20px;
+    margin-bottom: 20px;
+    &:hover {
+      color: #ffffff;
+      background-color: #4388c4;
     }
   }
-
 }

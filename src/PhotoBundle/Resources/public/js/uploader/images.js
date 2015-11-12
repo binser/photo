@@ -12,20 +12,13 @@
              * Список uploaderThumbnail
              */
             images: [],
-            /**
-             * Максимальное количество uploaderThumbnail
-             */
-            maxImages: 8,
+
             /**
              * Адрес конря API серверной части загрузчика
              * @property {string} apiURI - Адрес конря API
              */
             apiURI: '',
-            /**
-             * Папка, для сохранение изображений
-             * @property {string} preset - Папка
-             */
-            preset: 'ads',
+
             imageURL: function (filename) {
                 return filename;
             },
@@ -41,20 +34,6 @@
         }
 
         $.extend(this, {
-
-            addSubstitute: function () {
-                var $this = this;
-                if (this.maxImages != this.images.length) {
-                    var $substitute = $('<div>').addClass('substitute').click(function () {
-                        $this.parent().find('#download').click();
-                    });
-                    if (this.maxImages == 1) {
-                        $substitute.addClass('oneImage');
-                    }
-                    this.append($substitute);
-                }
-                return this;
-            },
             /**
              * Добавление одного или нескольких uploaderThumbnail
              * @param filename string|string[]
@@ -62,54 +41,49 @@
              */
             add: function (filename) {
                 /**
-                 * Добавление uploaderThumbnail если не их количество не достигло this.maxImages
+                 * Добавление uploaderThumbnail
                  * @param filename string Имя файла
                  * @returns {*}
                  */
                 function addImage(filename) {
                     var _this = this;
-                    if (this.images.length < this.maxImages) {
-                        var $image = $('<div>')
-                            .uploaderThumbnail({
-                                deleteCallback: function () {
-                                    _this.removeImage(this);
-                                },
-                                setDefaultCallback: function () {
-                                    _this.defaultImage(this);
-                                },
-                                clickCallback: function () {
-                                    _this.selectImage(this);
-                                },
-                                imageURL: this.imageURL,
-                                apiURI: this.apiURI,
-                                supported: _this.supported,
-                                preset: this.preset
-                            });
-                        var isFirst = !_this.images.length;
-                        _this.images.push($image);
-                        $image.insertBefore($('.substitute', _this));
-                        if(_this.maxImages == _this.images.length) {
-                            $('.substitute', _this).remove();
-                        }
-                        $image.addClass('loading');
-                        if (navigator.userAgent.search(/Android|Mac OS/) > -1 && $image.isImageURLLocal(filename)) {
-                            _this.clearExifData(filename, function (filename) {
-                                $image.filename(filename, function(){
-                                    if (isFirst) {
-                                        _this.defaultImage($image);
-                                        _this.selectImage($image);
-                                    }
-                                });
-                            });
-                        } else {
+                    var $image = $('<div>')
+                        .uploaderThumbnail({
+                            deleteCallback: function () {
+                                _this.removeImage(this);
+                            },
+                            setDefaultCallback: function () {
+                                _this.defaultImage(this);
+                            },
+                            clickCallback: function () {
+                                _this.selectImage(this);
+                            },
+                            imageURL: this.imageURL,
+                            apiURI: this.apiURI,
+                            supported: _this.supported
+                        });
+                    var isFirst = !_this.images.length;
+                    _this.images.push($image);
+                    $image.insertBefore($('.substitute'));
+                    $image.addClass('loading');
+                    if (navigator.userAgent.search(/Android|Mac OS/) > -1 && $image.isImageURLLocal(filename)) {
+                        _this.clearExifData(filename, function (filename) {
                             $image.filename(filename, function(){
                                 if (isFirst) {
                                     _this.defaultImage($image);
                                     _this.selectImage($image);
                                 }
                             });
-                        }
+                        });
+                    } else {
+                        $image.filename(filename, function(){
+                            if (isFirst) {
+                                _this.defaultImage($image);
+                                _this.selectImage($image);
+                            }
+                        });
                     }
+
                     return this;
                 }
 
@@ -241,6 +215,13 @@
                 return this;
             },
 
+            addSubstitute: function() {
+                var $substitute = $('<div>').addClass('substitute').click(function () {
+                    $('#files').click();
+                });
+
+                this.append($substitute);
+            },
             /**
              * Удаление uploaderThumbnail из this.images и DOM по индексу
              * @param index Индекс uploaderThumbnail

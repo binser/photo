@@ -1,3 +1,8 @@
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
 #admin_buttons_block {
   width: 300px;
   margin: 0 auto;
@@ -115,11 +120,85 @@
 }
 
 #albums_menu {
-  width: 300px;
+  width: 200px;
   float: left;
+  min-height: 50px;
+  ul {
+    list-style: none;
+    display: inline-block;
+    float: right;
+    li {
+      display: block;
+      width: 170px;
+      float: left;
+      padding: 10px 15px;
+      a {
+        color: #6F6F6F;
+        font-family: Georgia, "Times New Roman", Times, serif;
+        font-size: 18px;
+        text-decoration: none;
+      }
+      &:hover a {
+        border-bottom: 2px dashed black;
+      }
+      &.current a {
+        border-bottom: 2px dashed red;
+        cursor: default;
+      }
+    }
+  }
 }
 
 #photos_block {
-  width: 690px;
-  float: right;
+  margin-left: 200px;
+  width: 790px;
+  .signature {
+    width: 790px;
+    border-bottom: 1px dashed black;
+    font-family: "Times New Roman", Times, serif;
+    font-style: italic;
+    font-size: 20px;
+    text-align: center;
+  }
+  .uploadedPhotos {
+    .image {
+      .size(200px, 200px);
+      background-color: #e6e6e6;
+      margin: 20px 5px;
+      float: left;
+      position: relative;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+      }
+      &:first-child {
+        margin-left: 10px;
+      }
+      &:last-child {
+        margin-right: 10px;
+      }
+      .hint--bottom {
+        .size(18px, 18px);
+        border-radius: 9px;
+        position: absolute;
+        left: -5px;
+        top: -5px;
+        cursor: pointer;
+        .delete {
+          &:hover {
+            background: url(../images/uploader/preview_delete_hover.svg);
+            transform: rotate(180deg);
+          }
+          .size(18px, 18px);
+          background: url(../images/uploader/preview_delete.svg);
+          transition: 0.3s ease-in-out;
+        }
+
+      }
+    }
+  }
 }

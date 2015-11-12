@@ -69,16 +69,7 @@
          * @property {string} apiURI - Адрес конря API
          */
         this.apiURI = '';
-        /**
-         * Папка, для сохранение изображений
-         * @property {string} preset - Папка
-         */
-        this.preset = 'ads';
-        /**
-         * Максимальное количество фотографий
-         * @property {int} [maxImages = 8] - Допустимое количество фотографий
-         */
-        this.maxImages = 8;
+
         /**
          * Правило формирования пути файла
          * @param {string} filename - Имя файла
@@ -205,34 +196,8 @@
                 }
             });
 
-            function getRequirementsSrc() {
-                if (location.host.match(/\.by/)) {
-                    return '/помощь/293/61/'
-                }
-                return '/помощь/335/61/';
-            }
-
-            var $browseFile, $imageRequirements;
-            $imageRequirements = $('<div>').addClass('requirements');
-            $imageRequirements.html('<a href="' + getRequirementsSrc() + '" target="_blank">Требования к изображениям</a>');
-
-            $browseFile = $('<div>').attr({id: 'download'}).text('Загрузить');
-            $browseFile.click(function () {
-                $files.click();
-            });
-
-            if (this.maxImages > 1) {
-                var $imageRestrictions = $('<div>').addClass('restrictions');
-                $imageRestrictions.text('Максимально 8 фото');
-                this.append($imageRestrictions).append($imageRequirements);
-
-                $browseFile.css({'display': 'none'});
-                $this.append($browseFile);
-            } else {
-                var $oneImageBlock = $('<div></div>').addClass('oneImageBlock');
-                $oneImageBlock.append($browseFile).append($imageRequirements);
-                this.append($oneImageBlock);
-            }
+            var $saveButton = $('<div id="saveButton">Сохранить</div>');
+            $this.append($saveButton);
         }
 
         /**
@@ -241,10 +206,8 @@
         function init() {
             $imageList = $('<div></div>')
                 .uploaderImageList({
-                    maxImages: this.maxImages,
                     imageURL: this.imageURL,
-                    apiURI: this.apiURI,
-                    preset: this.preset
+                    apiURI: this.apiURI
                 });
 
             this.append($form);
@@ -256,6 +219,11 @@
          * Иницализация в режиме чтения
          */
         function initOldBrowser() {
+            $imageList = $('<div></div>')
+                .uploaderImageList({
+                    imageURL: this.imageURL,
+                    supported: false
+                });
             this.append($imageList);
 
             this.append($('<div>').addClass('warning').html('<div class="heading">Уважаемый пользователь!</div><div class="text">Ваш браузер устарел. Для корректной загрузки фото обновите версию браузера.</div>'));

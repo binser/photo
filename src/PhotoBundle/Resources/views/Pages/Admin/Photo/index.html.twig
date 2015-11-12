@@ -1,8 +1,49 @@
 {% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/photo/css/hint.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('bundles/photo/css/uploader.css') }}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
 {% block content %}
     <div id="albums_menu">
         {{ knp_menu_render('admin_albums') }}
     </div>
-    <div id="photos_block"></div>
+    <div id="photos_block">
+        <div class="signature">Загрузить фото</div>
+        <div class="imageUploader"></div>
+
+        {% if photos %}
+            <div class="clear"></div>
+            <div class="signature">Загруженные фото</div>
+            <div class="uploadedPhotos">
+                {% for photo in photos %}
+                    <div class="image">
+                        <img src="/uploaded/images/200x200/{{ photo.name }}"  photo_id="{{ photo.id }}">
+                        <div class="hint--bottom" data-hint="Удалить">
+                            <div class="delete"></div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+    <div class="clear"></div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/photo/js/uploader/uploader.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/photo/js/uploader/images.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/photo/js/uploader/thumbnail.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/photo/js/uploader/preview.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/photo/js/uploader/base64.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/photo/js/uploader/exif.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bundles/photo/js/uploader/mime.js') }}"></script>
+    <script type="text/javascript">
+        var imagesUploader;
+        var activeAlbumID = {{ activeAlbumId }};
+    </script>
+    <script type="text/javascript" src="{{ asset('bundles/photo/js/photos.js') }}"></script>
 {% endblock %}

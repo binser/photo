@@ -23,11 +23,6 @@
                  * @property {string} apiURI - Адрес конря API
                  */
                 apiURI: '',
-                /**
-                 * Папка, для сохранение изображений
-                 * @property {string} preset - Папка
-                 */
-                preset: 'ads',
                 imageURL: function (filename) {
                     return filename;
                 },
@@ -210,38 +205,14 @@
                     return dataType.match(/\/(.*)$/)[1];
                 }
 
-                function sendBlob(blob) {
-                    var reader = new FileReader(), result;
-
-                    if (typeof reader.readAsBinaryString !== 'undefined') {
-                        reader.readAsBinaryString(blob);
-                        reader.onloadend = (function () {
-                            sendFileOnServer(reader.result, blob.type);
-                        });
-                    } else {
-                        reader.readAsDataURL(blob);
-                        reader.onloadend = (function () {
-                            result = base64.decode(reader.result.replace(/^(.*?base64,)/, ''));
-                            sendFileOnServer(result, blob.type);
-                        });
-                    }
-                }
-
-                function sendDataUrl(dataUrl) {
-                    var binaryString = base64.decode(dataUrl.replace(/^(.*?base64,)/, '')),
-                        type = dataUrl.match(/^.*?:(.*?);/)[1];
-
-                    sendFileOnServer(binaryString, type);
-                }
-
                 function sendFileOnServer(binaryData, type) {
                     var boundaryString = '1BEF0A57BE110FD467A',
                         boundary = '--' + boundaryString,
                         requestBody = boundary + '\r\n';
 
-                    xhr.open('POST', _this.apiURI + '/binary/', true);
+                    xhr.open('POST', _this.apiURI, true);
 
-                    requestBody += 'Content-Disposition: form-data; name="preset"\r\n\r\n' + _this.preset + '\r\n' + boundary + '\r\n';
+                    requestBody += 'Content-Disposition: form-data; name="albumID"\r\n\r\n' + activeAlbumID + '\r\n' + boundary + '\r\n';
                     requestBody +=
                         'Content-Disposition: form-data; name="uploadedImages"; filename="1.' + getTypeImage(type) + '"' + '\r\n'
                             + 'Content-Type: ' + type + '\r\n'
@@ -252,29 +223,7 @@
 
                     xhr.setRequestHeader("Content-type", 'multipart/form-data; boundary="' + boundaryString + '"');
 
-                    sendRequest(xhr, requestBody);
-                }
 
-                function sendFileName() {
-                    var imageName = _this.filename().match(/^.*\/(.*)$/)[1],
-                        boundaryString = '1BEF0A57BE110FD467A',
-                        boundary = '--' + boundaryString,
-                        requestBody = boundary + '\r\n';
-
-                    xhr.open('POST', _this.apiURI+ '/server/', true);
-
-                    $.each(matrix, function (index, value) {
-                        requestBody += 'Content-Disposition: form-data; name="transform[' + index + ']"\r\n\r\n' + value + '\r\n' + boundary + '\r\n';
-                    });
-                    requestBody += 'Content-Disposition: form-data; name="preset"\r\n\r\n' + _this.preset + '\r\n' + boundary + '\r\n';
-                    requestBody += 'Content-Disposition: form-data; name="fileName"; \r\n\r\n' + imageName + '\r\n' + boundary + '\r\n';
-
-                    xhr.setRequestHeader("Content-type", 'multipart/form-data; boundary="' + boundaryString + '"');
-
-                    sendRequest(xhr, requestBody);
-                }
-
-                function sendRequest(xhr, requestBody) {
                     try {
                         if (typeof XMLHttpRequest.prototype.sendAsBinary == 'undefined') {
                             XMLHttpRequest.prototype.sendAsBinary = function (text) {
@@ -290,10 +239,30 @@
                     }
                 }
 
-                if (!this.isImageURLLocal(this.filename())) {
-                    sendFileName();
-                    return;
+                function sendBlob(blob) {
+                    var reader = new FileReader(), result;
+
+                    if (typeof reader.readAsBinaryString !== 'undefined') {
+                        reader.readAsBinaryString(blob);
+                        reader.onloadend = (function () {
+                            sendFileOnServer(reader.result, blob.type, blob.size);
+                        });
+                    } else {
+                        reader.readAsDataURL(blob);
+                        reader.onloadend = (function () {
+                            result = base64.decode(reader.result.replace(/^(.*?base64,)/, ''));
+                            sendFileOnServer(result, blob.type, blob.size);
+                        });
+                    }
                 }
+
+                function sendDataUrl(dataUrl) {
+                    var binaryString = base64.decode(dataUrl.replace(/^(.*?base64,)/, '')),
+                        type = dataUrl.match(/^.*?:(.*?);/)[1];
+
+                    sendFileOnServer(binaryString, type, binaryString.length);
+                }
+
                 try {
                     $canvas[0].toBlob(function (blob) {
                         sendBlob(blob);
