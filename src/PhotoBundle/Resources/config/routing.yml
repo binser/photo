@@ -3,9 +3,5 @@ photo_view:
     prefix:   /
 
 photo_admin:
-    resource: "@PhotoBundle/Resources/config/routing/admin/admin.yml"
+    resource: "@PhotoBundle/Resources/config/routing/admin.yml"
     prefix:   /admin/
-
-photo_admin_album:
-    resource: "@PhotoBundle/Resources/config/routing/admin/album.yml"
-    prefix:   /admin/albums/

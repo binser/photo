@@ -1,0 +1,12 @@
+admin_photos:
+    path: /{albumUrl}/
+    defaults: { _controller: PhotoBundle:Admin/Photo:index, albumUrl: svadba }
+
+admin_photos_uploader:
+    path: /uploader/
+    defaults: { _controller: PhotoBundle:Admin/Photo:uploader }
+
+admin_photo_delete:
+    path: /{photoId}/delete/
+    defaults: { _controller: PhotoBundle:Admin/Photo:delete }
+    methods:  [POST, DELETE]
