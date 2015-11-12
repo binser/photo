@@ -24,13 +24,17 @@
                 </div>
             </div>
         {% endfor %}
+        <div class="row last">
+            <div class="column id"> </div>
+            <div class="column caption"></div>
+            <div class="column url"></div>
+            <div class="column action">
+                <br>
+                <a href="{{ path('admin_album_new') }}" class="knopka">
+                    Создать новый альбом
+                </a>
+            </div>
+        </div>
     </div>
     <div class="clear"></div>
-    <ul>
-        <li>
-            <a href="{{ path('admin_album_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
 {% endblock %}

@@ -1,40 +1,60 @@
 {% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
 
 {% block content %}
-    <h1>Добавление альбома</h1>
+    <h1 class="header_form">Добавление альбома</h1>
 
     {{ form_start(form) }}
-    <table id="album_form">
-        <tbody>
-        <tr>
-            <th>{{ form_label(form.caption) }}</th>
-            <td>
+    <div class="album_form">
+        <div class="row_form">
+            <div class="column_form left">
+                {{ form_label(form.caption) }}
+            </div>
+            <div class="column_form right">
                 {{ form_widget(form.caption) }}
-                {{ form_errors(form.caption) }}
-            </td>
-        </tr>
-        <tr>
-            <th>{{ form_label(form.url) }}</th>
-            <td>
+                <div class="error_form">
+                    {{ form_errors(form.caption) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row_form">
+            <div class="column_form left">
+                {{ form_label(form.url) }}
+            </div>
+            <div class="column_form right">
                 {{ form_widget(form.url) }}
-                {{ form_errors(form.url) }}
-            </td>
-        </tr>
-        <tr>
-            <th>{{ form_label(form.enabled) }}</th>
-            <td>
+                <div class="error_form">
+                    {{ form_errors(form.url) }}
+                </div>
+            </div>
+        </div>
+
+        <div class="row_form">
+            <div class="column_form left">
+                {{ form_label(form.enabled) }}
+            </div>
+            <div class="column_form right">
                 {{ form_widget(form.enabled) }}
-                {{ form_errors(form.enabled) }}
-            </td>
+                <div class="error_form">
+                    {{ form_errors(form.enabled) }}
+                </div>
+            </div>
+        </div>
+        <div class="row_form">
+            <div class="column_form left">
+                <ul class="record_actions">
+                    <li>
+                        <a href="{{ path('admin_albums') }}">
+                            Back to the list
+                        </a>
+                    </li>
+                </ul>
 
-    </table>
+            </div>
+            <div class="column_form right">
+                {{ form_widget(form.submit) }}
+            </div>
+        </div>
+    </div>
     {{ form_end(form) }}
-
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('admin_albums') }}">
-                Back to the list
-            </a>
-        </li>
-    </ul>
 {% endblock %}

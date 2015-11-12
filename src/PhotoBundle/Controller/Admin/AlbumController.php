@@ -254,7 +254,7 @@ class AlbumController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('admin_album_edit', array('id' => $albumId)));
+            return $this->redirect($this->generateUrl('admin_album_edit', array('albumId' => $albumId)));
         }
 
         return $this->render('@Photo/Pages/Admin/Album/edit.html.twig', array(
