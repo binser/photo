@@ -37,22 +37,6 @@ class AlbumRepository extends EntityRepository
     }
 
     /**
-     * Получение списка URL адресов включенных альбомов
-     *
-     * @return array
-     */
-    public function getAllAlbumURLs() {
-        $albums = $this->findBy(['enabled' => true], ['sortIndex' => 'ASC']);
-        $urls = array();
-        /** @var Album $album */
-        foreach($albums as $album) {
-            $urls[] = $album->getUrl();
-        }
-
-        return $urls;
-    }
-
-    /**
      * Получение альбома по его URL
      *
      * @param $albumURL string

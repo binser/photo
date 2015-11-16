@@ -54,7 +54,6 @@ class LoadAlbumData extends AbstractFixture implements OrderedFixtureInterface
         $reportazh->setSortIndex(70);
         $reportazh->setUrl('reportazh');
 
-
         $em->persist($svadba);
         $em->persist($semja);
         $em->persist($ozhidanie);
@@ -63,6 +62,8 @@ class LoadAlbumData extends AbstractFixture implements OrderedFixtureInterface
         $em->persist($studija);
         $em->persist($reportazh);
         $em->flush();
+
+        $this->addReference('album-progulka', $progulka);
     }
 
     public function getOrder()

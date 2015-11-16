@@ -5,6 +5,7 @@ namespace PhotoBundle\EventSubscriber;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
+use PhotoBundle\Entity\Album;
 use PhotoBundle\Entity\Photo;
 
 class EntityEventsSubscriber implements EventSubscriber
@@ -43,8 +44,7 @@ class EntityEventsSubscriber implements EventSubscriber
         $em = $args->getEntityManager();
 
         if ($entity instanceof \PhotoBundle\Entity\Album) {
-            $entity->setSortIndex(10);
-
+            /** @var Album[] $albums */
             $albums = $em->getRepository('PhotoBundle:Album')->findAll();
             foreach($albums as $album) {
                 $currentSortIndex = $album->getSortIndex();

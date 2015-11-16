@@ -1,0 +1,9 @@
+{% extends 'PhotoBundle::base.html.twig' %}
+
+{% block content %}
+    {% for photo in photos %}
+        <div class="image">
+            <img src="/uploaded/images/200x200/{{ photo.name }}">
+        </div>
+    {% endfor %}
+{% endblock %}

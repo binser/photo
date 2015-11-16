@@ -19,19 +19,18 @@ class PhotoController extends Controller
 
     public function albumsAction($albumURL)
     {
-        $albumURLs = $this->getDoctrine()
-            ->getRepository('PhotoBundle:Album')
-            ->getAllAlbumURLs();
-        if(!in_array($albumURL, $albumURLs)) {
-            throw new NotFoundHttpException("Не корректный адрес страницы");
-        }
-
         $album = $this->getDoctrine()
             ->getRepository('PhotoBundle:Album')
             ->getAlbumByURL($albumURL);
+        dump($album);
+        if(!$album) {
+            throw new NotFoundHttpException("Не корректный адрес страницы");
+        }
+        /* TODO переписать под пагинатор */
         $photos = $album->getPhotos();
+        dump($photos->toArray());
 
-        return $this->render('PhotoBundle:Pages:index.html.twig', ['albums' => []]);
+        return $this->render('PhotoBundle:Pages:album.html.twig', ['photos' => $photos->toArray()]);
     }
 
     public function priceAction($pricePage)

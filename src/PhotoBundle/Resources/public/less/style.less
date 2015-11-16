@@ -3,6 +3,11 @@
   src: url(../fonts/HeatherScriptTwo.ttf);
 }
 
+.size(@width, @height) {
+  width: @width;
+  height: @height;
+}
+
 *{
   margin: 0;
   padding: 0;
@@ -67,6 +72,7 @@ body {
       bottom: 0;
       right: 0;
       font-family: Georgia, "Times New Roman", Times, serif;
+      z-index: 100;
       ul {
         display: block;
         background-color: #ffffff;
@@ -165,6 +171,28 @@ body {
             }
           }
         }
+      }
+    }
+
+    .image {
+      .size(200px, 200px);
+      background-color: #e6e6e6;
+      margin: 20px 5px;
+      float: left;
+      position: relative;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+      }
+      &:first-child {
+        margin-left: 10px;
+      }
+      &:last-child {
+        margin-right: 10px;
       }
     }
   }

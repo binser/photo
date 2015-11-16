@@ -8,7 +8,7 @@ photo_about:
 
 photo_albums:
     path: /albums/{albumURL}
-    defaults: { _controller: PhotoBundle:Photo:albums }
+    defaults: { _controller: PhotoBundle:Photo:albums, albumUrl: svadba }
 
 photo_price:
     path: /price/{pricePage}

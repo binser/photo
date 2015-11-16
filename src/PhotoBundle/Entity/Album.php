@@ -56,6 +56,7 @@ class Album
     public function __construct()
     {
         $this->photos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sortIndex = 10;
     }
 
     /**

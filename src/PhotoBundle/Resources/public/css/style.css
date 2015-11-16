@@ -63,6 +63,7 @@ body {
   bottom: 0;
   right: 0;
   font-family: Georgia, "Times New Roman", Times, serif;
+  z-index: 100;
 }
 #wrap #header #menu ul {
   display: block;
@@ -154,6 +155,28 @@ body {
 }
 #wrap #content .priceBlock .textBlock ul li:before {
   content: '- ';
+}
+#wrap #content .image {
+  width: 200px;
+  height: 200px;
+  background-color: #e6e6e6;
+  margin: 20px 5px;
+  float: left;
+  position: relative;
+}
+#wrap #content .image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+}
+#wrap #content .image:first-child {
+  margin-left: 10px;
+}
+#wrap #content .image:last-child {
+  margin-right: 10px;
 }
 #footer {
   width: 990px;
