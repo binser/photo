@@ -1,9 +1,23 @@
 {% extends 'PhotoBundle::base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/photo/css/lightbox.css') }}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/photo/js/lib/lightbox.js') }}"></script>
+{% endblock %}
+
 {% block content %}
     {% for photo in photos %}
         <div class="image">
-            <img src="/uploaded/images/200x200/{{ photo.name }}">
+            <a href="/uploaded/images/800x800/{{ photo.name }}" data-lightbox="galery-set">
+                <img src="/uploaded/images/200x200/{{ photo.name }}">
+            </a>
         </div>
     {% endfor %}
+
+    <div class="clear"></div>
 {% endblock %}
