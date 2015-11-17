@@ -7,11 +7,11 @@ photo_about:
     defaults: { _controller: PhotoBundle:Photo:about }
 
 photo_albums:
-    path: /albums/{albumURL}
+    path: /albums/{albumURL}/
     defaults: { _controller: PhotoBundle:Photo:albums, albumUrl: svadba }
 
 photo_price:
-    path: /price/{pricePage}
+    path: /price/{pricePage}/
     defaults: { _controller: PhotoBundle:Photo:price }
 
 photo_blog:

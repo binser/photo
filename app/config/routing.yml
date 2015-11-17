@@ -1,3 +1,6 @@
+logout:
+    pattern:   /logout
+
 photo:
     resource: "@PhotoBundle/Resources/config/routing.yml"
     prefix:   /

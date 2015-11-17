@@ -12,6 +12,10 @@
 
 {% block header %}
     {{ parent() }}
+    <div id="logout">
+        <a href="{{ path('logout') }}">ВЫХОД</a>
+    </div>
+    <div class="clear"></div>
     <div id="admin_menu">
         {{ knp_menu_render('admin_main') }}
     </div>

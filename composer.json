@@ -19,7 +19,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "doctrine/doctrine-migrations-bundle": "1.0.1",
         "doctrine/doctrine-fixtures-bundle": "v2.2.1",
-        "knplabs/knp-menu-bundle": "v2.1.0"
+        "knplabs/knp-menu-bundle": "v2.1.0",
+        "ircmaxell/password-compat": "1.0.3"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
