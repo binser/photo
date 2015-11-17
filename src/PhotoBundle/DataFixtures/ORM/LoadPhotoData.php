@@ -49,10 +49,10 @@ class LoadPhotoData extends AbstractFixture implements OrderedFixtureInterface
 
         $em->persist($photo1);
         $em->persist($photo2);
-        $em->persist($photo3);
-        $em->persist($photo4);
         $em->persist($photo5);
         $em->persist($photo6);
+        $em->persist($photo3);
+        $em->persist($photo4);
         $em->persist($photo7);
         $em->flush();
     }

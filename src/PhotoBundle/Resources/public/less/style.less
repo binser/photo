@@ -176,7 +176,7 @@ body {
 
     .image {
       .size(200px, 200px);
-      margin: 20px 5px;
+      margin: 20px 23px;
       float: left;
       position: relative;
       img {
@@ -186,12 +186,14 @@ body {
         bottom: 0;
         right: 0;
         margin: auto;
-      }
-      &:first-child {
-        margin-left: 10px;
-      }
-      &:last-child {
-        margin-right: 10px;
+        opacity: 0.8;
+        -webkit-transition: opacity 0.5s ease-out 0s;
+        -moz-transition: opacity 0.5s ease-out 0s;
+        -o-transition: opacity 0.5s ease-out 0s;
+        transition: opacity 0.5s ease-out 0s;
+        &:hover {
+          opacity: 1;
+        }
       }
     }
   }

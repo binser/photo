@@ -159,7 +159,7 @@ body {
 #wrap #content .image {
   width: 200px;
   height: 200px;
-  margin: 20px 5px;
+  margin: 20px 23px;
   float: left;
   position: relative;
 }
@@ -170,12 +170,14 @@ body {
   bottom: 0;
   right: 0;
   margin: auto;
+  opacity: 0.8;
+  -webkit-transition: opacity 0.5s ease-out 0s;
+  -moz-transition: opacity 0.5s ease-out 0s;
+  -o-transition: opacity 0.5s ease-out 0s;
+  transition: opacity 0.5s ease-out 0s;
 }
-#wrap #content .image:first-child {
-  margin-left: 10px;
-}
-#wrap #content .image:last-child {
-  margin-right: 10px;
+#wrap #content .image img:hover {
+  opacity: 1;
 }
 #footer {
   width: 990px;
