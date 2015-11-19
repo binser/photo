@@ -156,14 +156,14 @@ body {
 #wrap #content .priceBlock .textBlock ul li:before {
   content: '- ';
 }
-#wrap #content .image {
+#wrap #content .image_galery {
   width: 200px;
   height: 200px;
   margin: 20px 23px;
   float: left;
   position: relative;
 }
-#wrap #content .image img {
+#wrap #content .image_galery img {
   position: absolute;
   top: 0;
   left: 0;
@@ -176,7 +176,7 @@ body {
   -o-transition: opacity 0.5s ease-out 0s;
   transition: opacity 0.5s ease-out 0s;
 }
-#wrap #content .image img:hover {
+#wrap #content .image_galery img:hover {
   opacity: 1;
 }
 #footer {
