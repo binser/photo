@@ -1,5 +1,6 @@
 {% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
 
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
 {% block content %}
     <h1 class="header_form">Добавление альбома</h1>
 
@@ -42,15 +43,11 @@
         </div>
         <div class="row_form">
             <div class="column_form left">
-                <ul class="record_actions">
-                    <li>
-                        <a href="{{ path('admin_albums') }}">
-                            Back to the list
-                        </a>
-                    </li>
-                </ul>
-
+                <a href="{{ path('admin_albums') }}" class="glyphicon glyphicon glyphicon-menu-left" aria-hidden="true">
+                    Список альбомов
+                </a>
             </div>
+
             <div class="column_form right">
                 {{ form_widget(form.submit) }}
             </div>
