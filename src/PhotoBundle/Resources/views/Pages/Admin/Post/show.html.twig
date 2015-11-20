@@ -1,0 +1,48 @@
+{% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
+
+{% block content %}
+    <h1>Статья "{{ entity.title }}"</h1>
+
+    <table class="record_properties">
+        <tbody>
+        <tr>
+            <th>Идентификатор</th>
+            <td>{{ entity.id }}</td>
+        </tr>
+        <tr>
+            <th>Дата создания</th>
+            <td>{{ entity.dateCreate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Дата обновления</th>
+            <td>{{ entity.dateUpdate|date('Y-m-d H:i:s') }}</td>
+        </tr>
+        <tr>
+            <th>Заголовок</th>
+            <td>{{ entity.title }}</td>
+        </tr>
+        <tr>
+            <th>Краткое содержание</th>
+            <td>{{ entity.description }}</td>
+        </tr>
+        <tr>
+            <th>Текст</th>
+            <td>{{ entity.text }}</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('admin_posts') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>
+            <a href="{{ path('admin_posts_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+{% endblock %}

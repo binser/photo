@@ -1,0 +1,30 @@
+admin_posts:
+    path:     /
+    defaults: { _controller: "PhotoBundle:Admin/Post:index" }
+
+admin_posts_show:
+    path:     /{id}/show
+    defaults: { _controller: "PhotoBundle:Admin/Post:show" }
+
+admin_posts_new:
+    path:     /new
+    defaults: { _controller: "PhotoBundle:Admin/Post:new" }
+
+admin_posts_create:
+    path:     /create
+    defaults: { _controller: "PhotoBundle:Admin/Post:create" }
+    methods:  POST
+
+admin_posts_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "PhotoBundle:Admin/Post:edit" }
+
+admin_posts_update:
+    path:     /{id}/update
+    defaults: { _controller: "PhotoBundle:Admin/Post:update" }
+    methods:  [POST, PUT]
+
+admin_posts_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "PhotoBundle:Admin/Post:delete" }
+    methods:  [POST, DELETE]

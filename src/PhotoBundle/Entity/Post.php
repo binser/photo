@@ -23,9 +23,9 @@ class Post
     protected $dateCreate;
 
     /**
-     * @ORM\Column(name="update_create", type="datetime")
+     * @ORM\Column(name="date_update", type="datetime")
      */
-    protected $updateCreate;
+    protected $dateUpdate;
 
     /**
      * @ORM\Column(name="title", type="string")
@@ -41,7 +41,6 @@ class Post
      * @ORM\Column(name="text", type="text")
      */
     protected $text;
-
 
     /**
      * Get id
@@ -78,27 +77,27 @@ class Post
     }
 
     /**
-     * Set updateCreate
+     * Set dateUpdate
      *
-     * @param \DateTime $updateCreate
+     * @param \DateTime $dateUpdate
      *
      * @return Post
      */
-    public function setUpdateCreate($updateCreate)
+    public function setDateUpdate($dateUpdate)
     {
-        $this->updateCreate = $updateCreate;
+        $this->dateUpdate = $dateUpdate;
 
         return $this;
     }
 
     /**
-     * Get updateCreate
+     * Get dateUpdate
      *
      * @return \DateTime
      */
-    public function getUpdateCreate()
+    public function getDateUpdate()
     {
-        return $this->updateCreate;
+        return $this->dateUpdate;
     }
 
     /**

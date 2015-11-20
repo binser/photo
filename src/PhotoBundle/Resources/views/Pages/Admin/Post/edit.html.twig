@@ -1,0 +1,18 @@
+{% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
+
+{% form_theme edit_form 'bootstrap_3_layout.html.twig' %}
+
+{% block content %}
+    <h1>Редактирование статьи</h1>
+
+    {{ form(edit_form) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('admin_posts') }}">
+                Back to the list
+            </a>
+        </li>
+        <li>{{ form(delete_form) }}</li>
+    </ul>
+{% endblock %}

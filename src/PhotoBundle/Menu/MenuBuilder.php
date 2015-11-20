@@ -5,7 +5,6 @@ namespace PhotoBundle\Menu;
 use Doctrine\ORM\EntityManager;
 use Knp\Menu\FactoryInterface;
 use PhotoBundle\Entity\Album;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 class MenuBuilder
 {
@@ -64,7 +63,7 @@ class MenuBuilder
 
     public function createAdminMainMenu() {
         $menu = $this->factory->createItem('root');
-        $menu->addChild('Редактировать блог', array('route' => 'admin_blog', 'attributes' => array('class' => 'itemButton')));
+        $menu->addChild('Редактировать блог', array('route' => 'admin_posts', 'attributes' => array('class' => 'itemButton')));
         $menu->addChild('Редактировать альбомы', array('route' => 'admin_albums', 'attributes' => array('class' => 'itemButton')));
         $menu->addChild('Редактировать фотографии', array('route' => 'admin_photos', 'attributes' => array('class' => 'itemButton')));
 

@@ -7,6 +7,7 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Events;
 use PhotoBundle\Entity\Album;
 use PhotoBundle\Entity\Photo;
+use PhotoBundle\Entity\Post;
 
 class EntityEventsSubscriber implements EventSubscriber
 {
@@ -27,7 +28,8 @@ class EntityEventsSubscriber implements EventSubscriber
     {
         return array(
             Events::prePersist,
-            Events::preRemove
+            Events::preRemove,
+            Events::preUpdate
         );
     }
 
@@ -53,6 +55,10 @@ class EntityEventsSubscriber implements EventSubscriber
         } elseif($entity instanceof Photo) {
             $dateCreate = new \DateTime();
             $entity->setDateCreate($dateCreate);
+        } elseif($entity instanceof Post) {
+            $dateCreate = new \DateTime();
+            $entity->setDateCreate($dateCreate);
+            $entity->setDateUpdate($dateCreate);
         }
     }
 
@@ -92,6 +98,15 @@ class EntityEventsSubscriber implements EventSubscriber
                     unlink($fullName);
                 }
             }
+        }
+    }
+
+    public function preUpdate(LifecycleEventArgs $args) {
+        $entity = $args->getEntity();
+
+        if($entity instanceof Post) {
+            $dateUpdate = new \DateTime();
+            $entity->setDateUpdate($dateUpdate);
         }
     }
 }

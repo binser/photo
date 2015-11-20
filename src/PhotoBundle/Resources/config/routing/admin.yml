@@ -11,6 +11,6 @@ photo_admin_photos:
     prefix:   /photos/
 
 
-admin_blog:
-    path: /blog/
-    defaults: { _controller: PhotoBundle:Admin/Admin:index }
+photo_admin_posts:
+    resource: "@PhotoBundle/Resources/config/routing/admin/post.yml"
+    prefix:   /posts/

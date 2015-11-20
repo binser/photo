@@ -4,3 +4,6 @@ logout:
 photo:
     resource: "@PhotoBundle/Resources/config/routing.yml"
     prefix:   /
+
+elfinder:
+     resource: "@FMElfinderBundle/Resources/config/routing.yml"
