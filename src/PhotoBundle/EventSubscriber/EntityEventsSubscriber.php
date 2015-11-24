@@ -59,6 +59,8 @@ class EntityEventsSubscriber implements EventSubscriber
             $dateCreate = new \DateTime();
             $entity->setDateCreate($dateCreate);
             $entity->setDateUpdate($dateCreate);
+
+            $this->savePostImages($entity);
         }
     }
 
@@ -107,6 +109,22 @@ class EntityEventsSubscriber implements EventSubscriber
         if($entity instanceof Post) {
             $dateUpdate = new \DateTime();
             $entity->setDateUpdate($dateUpdate);
+
+            $this->savePostImages($entity);
+        }
+    }
+
+    private function savePostImages(Post &$post) {
+        $text = $post->getText();
+        preg_match_all('/src="(.*?)"/', $text, $m);
+        if (isset($m[1]) && $m[1]) {
+            $images = json_encode($m[1]);
+            $mainImage = array_shift($m[1]);
+            $post->setMainImage($mainImage);
+            $post->setImages($images);
+        } else {
+            $post->setMainImage('');
+            $post->setImages('');
         }
     }
 }

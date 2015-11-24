@@ -15,8 +15,8 @@ photo_price:
     defaults: { _controller: PhotoBundle:Photo:price }
 
 photo_blog:
-    path: /blog/
-    defaults: { _controller: PhotoBundle:Photo:blog }
+    path: /blog/{page}
+    defaults: { _controller: PhotoBundle:Photo:blog, page: 1 }
 
 photo_contacts:
     path: /contacts/

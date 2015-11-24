@@ -63,7 +63,7 @@ class PostController extends Controller
     private function createCreateForm(Post $entity)
     {
         $form = $this->createForm(new PostType(), $entity, array(
-            'action' => $this->generateUrl('admin_album_create'),
+            'action' => $this->generateUrl('admin_posts_create'),
             'method' => 'POST',
         ));
 

@@ -56,9 +56,17 @@ class PhotoController extends Controller
         }
     }
 
-    public function blogAction()
+    public function blogAction($page)
     {
-        return $this->render('PhotoBundle:Pages:index.html.twig', ['albums' => []]);
+        $countPostsOnPage = $this->getParameter('posts_on_page');
+        $start = $countPostsOnPage * ($page - 1);
+        $posts = $this->getDoctrine()
+            ->getRepository('PhotoBundle:Post')
+            ->getPosts($start, $countPostsOnPage);
+
+        dump($countPostsOnPage, $start, $posts);
+
+        return $this->render('PhotoBundle:Pages:blog.html.twig', array('posts' => $posts));
     }
 
     public function contactsAction()

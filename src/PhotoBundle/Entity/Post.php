@@ -43,6 +43,21 @@ class Post
     protected $text;
 
     /**
+     * @ORM\Column(name="main_image", type="string")
+     */
+    protected $mainImage;
+
+    /**
+     * @ORM\Column(name="images", type="text")
+     */
+    protected $images;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $enabled;
+
+    /**
      * Get id
      *
      * @return integer
@@ -170,5 +185,77 @@ class Post
     public function getText()
     {
         return $this->text;
+    }
+
+    /**
+     * Set mainImage
+     *
+     * @param string $mainImage
+     *
+     * @return Post
+     */
+    public function setMainImage($mainImage)
+    {
+        $this->mainImage = $mainImage;
+
+        return $this;
+    }
+
+    /**
+     * Get mainImage
+     *
+     * @return string
+     */
+    public function getMainImage()
+    {
+        return $this->mainImage;
+    }
+
+    /**
+     * Set images
+     *
+     * @param string $images
+     *
+     * @return Post
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    /**
+     * Get images
+     *
+     * @return string
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * Set enabled
+     *
+     * @param boolean $enabled
+     *
+     * @return Post
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+
+        return $this;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
     }
 }
