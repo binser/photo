@@ -22,13 +22,11 @@ class PhotoController extends Controller
         $album = $this->getDoctrine()
             ->getRepository('PhotoBundle:Album')
             ->getAlbumByURL($albumURL);
-        dump($album);
         if(!$album) {
             throw new NotFoundHttpException("Не корректный адрес страницы");
         }
         /* TODO переписать под пагинатор */
         $photos = $album->getPhotos();
-        dump($photos->toArray());
 
         return $this->render('PhotoBundle:Pages:album.html.twig', ['photos' => $photos->toArray()]);
     }
@@ -63,8 +61,6 @@ class PhotoController extends Controller
         $posts = $this->getDoctrine()
             ->getRepository('PhotoBundle:Post')
             ->getPosts($start, $countPostsOnPage);
-
-        dump($countPostsOnPage, $start, $posts);
 
         return $this->render('PhotoBundle:Pages:blog.html.twig', array('posts' => $posts));
     }
