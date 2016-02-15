@@ -1,17 +1,28 @@
 {% extends 'PhotoBundle::base.html.twig' %}
 
 {% block content %}
-    {% for post in posts %}
-        <div class="post_block" style="width: 100%; border-bottom: 2px solid black">
-            <div class="main_photo" style="float: left; width: 300px; min-height: 1px">
-                {% if post.mainImage %}
-                    <img src="{{ post.mainImage }}" alt="{{ post.title }}" width="200px">
-                {% endif %}
+    <div class="blog_content">
+        {% if posts %}
+            {% for post in posts %}
+                <div class="post_block" style="width: 100%;">
+                    {% if post.mainImage %}
+                        <div class="main_photo" style="float: left; width: 300px; min-height: 1px">
+                            <img src="{{ post.mainImage }}" alt="{{ post.title }}" width="200px">
+                        </div>
+                    {% endif %}
+                    <div class="description_post" style="float: left;">
+                        <h3>{{ post.description }}</h3>
+                        <p class="text-right">
+                            <a href="{{ path('photo_blog_article', {'id': post.id}) }}">ПОДРОБНЕЕ</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="clear"></div>
+            {% endfor %}
+        {% else %}
+            <div class="alert alert-warning" role="alert">
+                Страница находится в разработке
             </div>
-            <div class="description_post" style="float: left;">
-                <h3>{{ post.description }}</h3>
-            </div>
-        </div>
-        <div class="clear"></div>
-    {% endfor %}
+        {% endif %}
+    </div>
 {% endblock %}

@@ -59,6 +59,7 @@ class EntityEventsSubscriber implements EventSubscriber
             $dateCreate = new \DateTime();
             $entity->setDateCreate($dateCreate);
             $entity->setDateUpdate($dateCreate);
+            $entity->setEnabled(true);
 
             $this->savePostImages($entity);
         }

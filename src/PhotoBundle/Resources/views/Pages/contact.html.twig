@@ -1,0 +1,66 @@
+{% extends 'PhotoBundle::base.html.twig' %}
+
+{% block content %}
+    <div class="contact-info">
+        <div class="row">
+            <div class="col-xs-6 text-right">
+                <span class="contact-name">Телефон</span>
+            </div>
+            <div class="col-xs-6">
+                <span class="contact-value">+7(920)836-89-29</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 text-right">
+                <span class="contact-name">E-mail</span>
+            </div>
+            <div class="col-xs-6">
+                <span class="contact-value">frau.gavrilencko2011@yandex.ru</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 text-right">
+                <span class="contact-name">ВКонтакте</span>
+            </div>
+            <div class="col-xs-6">
+                <span class="contact-value"><a href="https://vk.com/fromirinawithlove">https://vk.com/fromirinawithlove</a></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 text-right">
+                <span class="contact-name">Одноклассники</span>
+            </div>
+            <div class="col-xs-6">
+                <span class="contact-value"><a href="http://ok.ru/irina.gavrilenkoandreeva">http://ok.ru/irina.gavrilenkoandreeva</a></span>
+            </div>
+        </div>
+
+        <div class="group-widgets">
+            <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
+
+            <!-- VK Widget -->
+            <div id="vk_groups"></div>
+            <script type="text/javascript">
+                VK.Widgets.Group("vk_groups", {mode: 0, width: "220", height: "400", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 82998753);
+            </script>
+
+            <div id="ok_group_widget"></div>
+            <script>
+                !function (d, id, did, st) {
+                    var js = d.createElement("script");
+                    js.src = "https://connect.ok.ru/connect.js";
+                    js.onload = js.onreadystatechange = function () {
+                        if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                            if (!this.executed) {
+                                this.executed = true;
+                                setTimeout(function () {
+                                    OK.CONNECT.insertGroupWidget(id,did,st);
+                                }, 0);
+                            }
+                        }}
+                    d.documentElement.appendChild(js);
+                }(document,"ok_group_widget","53893345509631","{width:220,height:400}");
+            </script>
+        </div>
+    </div>
+{% endblock %}

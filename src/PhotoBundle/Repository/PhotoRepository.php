@@ -12,4 +12,7 @@ use Doctrine\ORM\EntityRepository;
  */
 class PhotoRepository extends EntityRepository
 {
+    public function getLastPhotos() {
+        return $this->findBy(array(), array('dateCreate' => 'DESC'), 20);
+    }
 }

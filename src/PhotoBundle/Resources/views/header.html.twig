@@ -1,10 +1,15 @@
-<div class="authorBlock">
+{#<div class="authorBlock">
     <div class="authorName">
         <a href="{{ path('photo_homepage') }}">Гавриленко Ирина</a>
     </div>
     <div class="photogarapher">
         <a href="{{ path('photo_homepage') }}">фотограф</a>
     </div>
+</div>#}
+<div class="logo">
+    <a href="/">
+        <img src="{{ asset('bundles/photo/images/new_logo.jpg') }}" alt="Логотип">
+    </a>
 </div>
 <div id="menu">
     {{ knp_menu_render('main') }}

@@ -1,47 +1,41 @@
 {% extends 'PhotoBundle:Pages/Admin:base.html.twig' %}
 
 {% block content %}
-    <h1>Post list</h1>
+    <h1>Список статей</h1>
 
-    <table class="records_list">
-        <thead>
-        <tr>
-            <th>DateCreate</th>
-            <th>DateUpdate</th>
-            <th>Title</th>
-            <th>Description</th>
-            <th>Text</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td>{% if entity.dateCreate %}{{ entity.dateCreate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if entity.dateUpdate %}{{ entity.dateUpdate|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ entity.title }}</td>
-                <td>{{ entity.description }}</td>
-                <td>{{ entity.text }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('admin_posts_show', { 'id': entity.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('admin_posts_edit', { 'id': entity.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <a class="btn btn-primary" href="{{ path('admin_posts_new') }}">
+        Создать новую статью
+    </a>
 
-    <ul>
-        <li>
-            <a href="{{ path('admin_posts_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
+    {% if entities %}
+        <div class="container">
+            <div class="row text-center row-header">
+                <div class="col-sm-3">Дата создания</div>
+                <div class="col-sm-3">Заголовок</div>
+                <div class="col-sm-3">Описание</div>
+                <div class="col-sm-3">Действия</div>
+            </div>
+            {% for entity in entities %}
+                <div class="row text-center row-content">
+                    <div class="col-sm-3">{{ entity.dateCreate|date('Y-m-d H:i:s') }}</div>
+                    <div class="col-sm-3">{{ entity.title }}</div>
+                    <div class="col-sm-3">{{ entity.description }}</div>
+                    <div class="col-sm-3">
+                        <div>
+                            <a href="{{ path('admin_posts_show', { 'id': entity.id }) }}">
+                                <span class="glyphicon glyphicon-zoom-in" title="Показать"></span>
+                            </a>
+                        </div>
+                        <div>
+                            <a href="{{ path('admin_posts_edit', { 'id': entity.id }) }}">
+                                <span class="glyphicon glyphicon-edit" title="Редактировать"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <div class="alert alert-danger" role="alert">Еще не добавлено ни одной статьи</div>
+    {% endif %}
 {% endblock %}

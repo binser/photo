@@ -18,6 +18,14 @@ photo_blog:
     path: /blog/{page}
     defaults: { _controller: PhotoBundle:Photo:blog, page: 1 }
 
+photo_blog_article:
+    path: /article/{id}
+    defaults: { _controller: PhotoBundle:Photo:article }
+
 photo_contacts:
     path: /contacts/
     defaults: { _controller: PhotoBundle:Photo:contacts }
+
+photo_rent:
+    path: /arenda/
+    defaults: { _controller: PhotoBundle:Photo:rent }

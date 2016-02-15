@@ -25,7 +25,6 @@ class MenuBuilder
         $menu = $this->factory->createItem('root');
 
         $menu->addChild('ГЛАВНАЯ', array('route' => 'photo_homepage', 'attributes' => array('class' => 'firstLevel')));
-        $menu->addChild('ОБО МНЕ', array('route' => 'photo_about', 'attributes' => array('class' => 'firstLevel')));
 
         $menu->addChild('ПОРТФОЛИО', array('attributes' => array('class' => 'firstLevel')));
         $albums = $this->em->getRepository('PhotoBundle:Album')->getAllActualAlbums();
@@ -55,7 +54,9 @@ class MenuBuilder
             ));
         }
 
-        $menu->addChild('БЛОГ', array('route' => 'photo_blog', 'attributes' => array('class' => 'firstLevel')));
+        $menu->addChild('СТАТЬИ И СОВЕТЫ', array('route' => 'photo_blog', 'attributes' => array('class' => 'firstLevel')));
+        $menu->addChild('АРЕНДА КОСТЮМОВ', array('route' => 'photo_rent', 'attributes' => array('class' => 'firstLevel')));
+        $menu->addChild('ОБО МНЕ', array('route' => 'photo_about', 'attributes' => array('class' => 'firstLevel')));
         $menu->addChild('КОНТАКТЫ', array('route' => 'photo_contacts', 'attributes' => array('class' => 'firstLevel')));
 
         return $menu;

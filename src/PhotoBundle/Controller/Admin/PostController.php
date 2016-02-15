@@ -67,7 +67,7 @@ class PostController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array('label' => 'Создать',  'attr' => array('class' => 'btn btn-success')));
 
         return $form;
     }
@@ -147,7 +147,7 @@ class PostController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array('label' => 'Обновить', 'attr' => array('class' => 'btn btn-success')));
 
         return $form;
     }
@@ -217,7 +217,7 @@ class PostController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('admin_posts_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array('label' => 'Удалить', 'attr' => array('class' => 'btn btn-danger')))
             ->getForm()
         ;
     }

@@ -7,12 +7,10 @@
 
     {{ form(edit_form) }}
 
-    <ul class="record_actions">
-        <li>
-            <a href="{{ path('admin_posts') }}">
-                Back to the list
-            </a>
-        </li>
-        <li>{{ form(delete_form) }}</li>
-    </ul>
+    <a href="{{ path('admin_posts') }}" class="btn btn-default back_button">
+        <span class="glyphicon glyphicon-arrow-left" title="Назад"></span>
+        Вернеться к списку
+    </a>
+
+    {{ form(delete_form) }}
 {% endblock %}

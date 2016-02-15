@@ -32,7 +32,7 @@
 #admin_menu {
   width: 990px;
   position: absolute;
-  top: 50px;
+  top: 310px;
   left: 50%;
   margin-left: -495px;
   background: transparent;
@@ -266,4 +266,39 @@
       }
     }
   }
+}
+
+.row-header {
+  margin-top: 20px;
+  background-color: #EDF8FF;
+  font-weight: bold;
+  height: 40px;
+}
+
+.row-content {
+  display: flex;
+  align-items: center;
+  &:nth-child(2n+1) {
+    background: #EFF8E1;
+  }
+}
+
+.show-post {
+  .row {
+    border-bottom: 1px dashed black;
+    .col-sm-9 {
+      border-left: 1px solid black;
+      padding: 10px;
+    }
+    .col-sm-3 {
+      padding: 10px;
+    }
+  }
+  button , a {
+    margin-top: 10px;
+  }
+}
+
+.back_button {
+  margin: 15px 0;
 }

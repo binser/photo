@@ -3,7 +3,41 @@
 {% block content %}
     <h1>Статья "{{ entity.title }}"</h1>
 
-    <table class="record_properties">
+    <div class="container show-post">
+        <div class="row">
+            <div class="col-sm-3 text-right">Идентификатор</div>
+            <div class="col-sm-9">{{ entity.id }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 text-right">Дата создания</div>
+            <div class="col-sm-9">{{ entity.dateCreate|date('Y-m-d H:i:s') }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 text-right">Заголовок</div>
+            <div class="col-sm-9">{{ entity.title }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 text-right">Краткое содержание</div>
+            <div class="col-sm-9">{{ entity.description }}</div>
+        </div>
+        <div class="row">
+            <div class="col-sm-3 text-right">Текст</div>
+            <div class="col-sm-9">{{ entity.text|raw }}</div>
+        </div>
+
+        <a href="{{ path('admin_posts') }}" class="btn btn-default">
+            <span class="glyphicon glyphicon-arrow-left" title="Назад"></span>
+            Вернеться к списку
+        </a>
+        <br>
+        <a href="{{ path('admin_posts_edit', { 'id': entity.id }) }}" class="btn btn-primary">
+            <span class="glyphicon glyphicon-edit" title="Редактировать"></span>
+            Редактировать
+        </a>
+        {{ form(delete_form) }}
+    </div>
+
+    {#<table class="record_properties">
         <tbody>
         <tr>
             <th>Идентификатор</th>
@@ -44,5 +78,5 @@
             </a>
         </li>
         <li>{{ form(delete_form) }}</li>
-    </ul>
+    </ul>#}
 {% endblock %}

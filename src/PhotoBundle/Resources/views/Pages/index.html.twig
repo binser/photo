@@ -1,5 +1,82 @@
 {% extends 'PhotoBundle::base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset('bundles/photo/css/lightbox.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('lib/slick/slick.css') }}" type="text/css" rel="stylesheet"/>
+    <link href="{{ asset('lib/slick/slick-theme.css') }}" type="text/css" rel="stylesheet"/>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript" src="{{ asset('bundles/photo/js/lib/lightbox.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('lib/slick/slick.min.js') }}"></script>
+    <script type="text/javascript">
+        $('.slick').slick({
+            dots: true,
+            slidesToShow: 4,
+            slidesToScroll: 4,
+            centerMode: true,
+            centerPadding: '60px',
+            variableWidth: true,
+            adaptiveHeight: true,
+            autoplay: true,
+            arrows: true,
+            focusOnSelect: true
+        });
+    </script>
+{% endblock %}
+
 {% block content %}
-    <h1>Привет</h1>
+    <div id="index_content">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">Мои фотограффии</h2>
+            </div>
+            <div class="panel-body">
+                <div class="slick">
+                    {% for photo in photos %}
+                        <div class="image_galery"{# class="thumbnail"#}>
+                            <a href="/uploaded/images/800x800/{{ photo.name }}" data-lightbox="galery-set">
+                                <img src="/uploaded/images/200x200/{{ photo.name }}">
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h2 class="panel-title text-center">Я в социальных сетях</h2>
+            </div>
+            <div class="panel-body">
+                <script type="text/javascript" src="//vk.com/js/api/openapi.js?121"></script>
+
+                <!-- VK Widget -->
+                <div id="vk_groups"></div>
+                <script type="text/javascript">
+                    VK.Widgets.Group("vk_groups", {mode: 0, width: "220", height: "400", color1: 'FFFFFF', color2: '2B587A', color3: '5B7FA6'}, 82998753);
+                </script>
+
+                <div id="ok_group_widget"></div>
+                <script>
+                    !function (d, id, did, st) {
+                        var js = d.createElement("script");
+                        js.src = "https://connect.ok.ru/connect.js";
+                        js.onload = js.onreadystatechange = function () {
+                            if (!this.readyState || this.readyState == "loaded" || this.readyState == "complete") {
+                                if (!this.executed) {
+                                    this.executed = true;
+                                    setTimeout(function () {
+                                        OK.CONNECT.insertGroupWidget(id,did,st);
+                                    }, 0);
+                                }
+                            }}
+                        d.documentElement.appendChild(js);
+                    }(document,"ok_group_widget","53893345509631","{width:220,height:400}");
+                </script>
+            </div>
+        </div>
+    </div>
 {% endblock %}

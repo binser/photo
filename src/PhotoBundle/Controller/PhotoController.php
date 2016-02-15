@@ -9,12 +9,13 @@ class PhotoController extends Controller
 {
     public function indexAction()
     {
-        return $this->render('PhotoBundle:Pages:index.html.twig', ['albums' => []]);
+        $photos = $this->getDoctrine()->getRepository('PhotoBundle:Photo')->getLastPhotos();
+        return $this->render('PhotoBundle:Pages:index.html.twig', array('photos' => $photos));
     }
 
     public function aboutAction()
     {
-        return $this->render('PhotoBundle:Pages:index.html.twig', ['albums' => []]);
+        return $this->render('PhotoBundle:Pages:about.html.twig');
     }
 
     public function albumsAction($albumURL)
@@ -67,6 +68,15 @@ class PhotoController extends Controller
 
     public function contactsAction()
     {
-        return $this->render('PhotoBundle:Pages:index.html.twig', ['albums' => []]);
+        return $this->render('PhotoBundle:Pages:contact.html.twig');
+    }
+
+    public function rentAction() {
+        return $this->render('PhotoBundle:Pages:rent.html.twig');
+    }
+
+    public function articleAction($id) {
+        $post = $this->getDoctrine()->getRepository('PhotoBundle:Post')->find($id);
+        return $this->render('PhotoBundle:Pages:article.html.twig', array('post' => $post));
     }
 }
