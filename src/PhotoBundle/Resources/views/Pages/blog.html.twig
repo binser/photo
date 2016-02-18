@@ -1,23 +1,27 @@
 {% extends 'PhotoBundle::base.html.twig' %}
 
 {% block content %}
-    <div class="blog_content">
+    <div id="blog_content">
         {% if posts %}
             {% for post in posts %}
-                <div class="post_block" style="width: 100%;">
-                    {% if post.mainImage %}
-                        <div class="main_photo" style="float: left; width: 300px; min-height: 1px">
-                            <img src="{{ post.mainImage }}" alt="{{ post.title }}" width="200px">
-                        </div>
-                    {% endif %}
-                    <div class="description_post" style="float: left;">
-                        <h3>{{ post.description }}</h3>
-                        <p class="text-right">
-                            <a href="{{ path('photo_blog_article', {'id': post.id}) }}">ПОДРОБНЕЕ</a>
+                <div class="row">
+                    <div class="col-sm-3 text-center">
+                        {% if post.mainImage %}
+                            <img src="{{ post.mainImage }}" alt="{{ post.title }}" width="95%">
+                        {% else %}
+                            <img src="{{ asset('bundles/photo/images/camera.png') }}" alt="Статья без фото" width="95%">
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-9">
+                        <h3 class="text-center">{{ post.description }}</h3>
+                        <p class="text-right text-info">
+                            <a href="{{ path('photo_blog_article', {'id': post.id}) }}">
+                                ПОДРОБНЕЕ
+                                <i class="fa fa-arrow-right"></i>
+                            </a>
                         </p>
                     </div>
                 </div>
-                <div class="clear"></div>
             {% endfor %}
         {% else %}
             <div class="alert alert-warning" role="alert">

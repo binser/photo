@@ -15,4 +15,8 @@ class PostRepository extends EntityRepository
     public function getPosts($start, $limit) {
         return $this->findBy(array('enabled' => true), array('dateCreate' => 'DESC'), $limit, $start);
     }
+
+    public function getLastPost() {
+        return $this->findOneBy(array('enabled' => true), array('dateCreate' => 'DESC'));
+    }
 }

@@ -11,13 +11,19 @@
 {% endblock %}
 
 {% block content %}
-    {% for photo in photos %}
-        <div class="image_galery">
-            <a href="/uploaded/images/800x800/{{ photo.name }}" data-lightbox="galery-set">
-                <img src="/uploaded/images/200x200/{{ photo.name }}">
-            </a>
+    {% if photos %}
+        {% for photo in photos %}
+            <div class="image_galery">
+                <a href="/uploaded/images/800x800/{{ photo.name }}" data-lightbox="galery-set">
+                    <img src="/uploaded/images/200x200/{{ photo.name }}" alt="Фото {{ loop.index }} альбома {{ albumName }}">
+                </a>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div class="alert alert-warning" role="alert">
+            В данном альбоме нет фотограффий
         </div>
-    {% endfor %}
+    {% endif %}
 
     <div class="clear"></div>
 {% endblock %}

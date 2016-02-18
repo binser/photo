@@ -10,39 +10,85 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="text/javascript" src="{{ asset('bundles/photo/js/lib/lightbox.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('lib/share42/share42.js') }}"></script>
     <script type="text/javascript" src="{{ asset('lib/slick/slick.min.js') }}"></script>
     <script type="text/javascript">
         $('.slick').slick({
             dots: true,
+            infinite: true,
             slidesToShow: 4,
-            slidesToScroll: 4,
+            slidesToScroll: 1,
             centerMode: true,
-            centerPadding: '60px',
             variableWidth: true,
             adaptiveHeight: true,
             autoplay: true,
+            autoplaySpeed: 6000,
             arrows: true,
             focusOnSelect: true
         });
+        lightbox.option({
+            'resizeDuration': 500,
+            'wrapAround': true,
+            'albumLabel': ''
+        })
     </script>
 {% endblock %}
 
 {% block content %}
     <div id="index_content">
+        {% if photos %}
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title text-center">Мои фотограффии</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="slick">
+                        {% for photo in photos %}
+                            <div class="image_galery">
+                                <a href="/uploaded/images/800x800/{{ photo.name }}" data-lightbox="galery-set">
+                                    <img src="/uploaded/images/200x200/{{ photo.name }}">
+                                </a>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        {%  endif %}
+
+        {% if post %}
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h2 class="panel-title text-center">Моя статья</h2>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-sm-3 text-center">
+                            {% if post.mainImage %}
+                                <img src="{{ post.mainImage }}" alt="{{ post.title }}" width="95%">
+                            {% else %}
+                                <img src="{{ asset('bundles/photo/images/camera.png') }}" alt="Статья без фото" width="95%">
+                            {% endif %}
+                        </div>
+                        <div class="col-sm-9">
+                            <h3 class="text-center">{{ post.description }}</h3>
+                            <p class="text-right text-info">
+                                <a href="{{ path('photo_blog_article', {'id': post.id}) }}">
+                                    ПОДРОБНЕЕ
+                                    <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h2 class="panel-title text-center">Мои фотограффии</h2>
+                <h2 class="panel-title text-center">Рассказать друзьям о моем сайте</h2>
             </div>
             <div class="panel-body">
-                <div class="slick">
-                    {% for photo in photos %}
-                        <div class="image_galery"{# class="thumbnail"#}>
-                            <a href="/uploaded/images/800x800/{{ photo.name }}" data-lightbox="galery-set">
-                                <img src="/uploaded/images/200x200/{{ photo.name }}">
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
+                <div class="share42init" data-path="/lib/share42/"></div>
             </div>
         </div>
 
@@ -72,7 +118,8 @@
                                         OK.CONNECT.insertGroupWidget(id,did,st);
                                     }, 0);
                                 }
-                            }}
+                            }
+                        };
                         d.documentElement.appendChild(js);
                     }(document,"ok_group_widget","53893345509631","{width:220,height:400}");
                 </script>

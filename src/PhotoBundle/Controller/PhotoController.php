@@ -10,7 +10,8 @@ class PhotoController extends Controller
     public function indexAction()
     {
         $photos = $this->getDoctrine()->getRepository('PhotoBundle:Photo')->getLastPhotos();
-        return $this->render('PhotoBundle:Pages:index.html.twig', array('photos' => $photos));
+        $post = $this->getDoctrine()->getRepository('PhotoBundle:Post')->getLastPost();
+        return $this->render('PhotoBundle:Pages:index.html.twig', array('photos' => $photos, 'post' => $post));
     }
 
     public function aboutAction()
@@ -29,7 +30,10 @@ class PhotoController extends Controller
         /* TODO переписать под пагинатор */
         $photos = $album->getPhotos();
 
-        return $this->render('PhotoBundle:Pages:album.html.twig', ['photos' => $photos->toArray()]);
+        return $this->render('PhotoBundle:Pages:album.html.twig', [
+            'photos' => $photos->toArray(),
+            'albumName' => $album->getCaption()
+        ]);
     }
 
     public function priceAction($pricePage)
