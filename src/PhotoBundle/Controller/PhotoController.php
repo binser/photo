@@ -28,10 +28,12 @@ class PhotoController extends Controller
             throw new NotFoundHttpException("Не корректный адрес страницы");
         }
         /* TODO переписать под пагинатор */
-        $photos = $album->getPhotos();
+        $photos = $this->getDoctrine()
+            ->getRepository('PhotoBundle:Photo')
+            ->getPhotosFromAlbum($album);
 
         return $this->render('PhotoBundle:Pages:album.html.twig', [
-            'photos' => $photos->toArray(),
+            'photos' => $photos,
             'albumName' => $album->getCaption()
         ]);
     }
